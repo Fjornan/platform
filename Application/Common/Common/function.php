@@ -3,77 +3,32 @@
 function statusMsg($error){
 	switch ($error) {
 		case 0:
-			$msg = '数据获取成功';
+			$msg = '操作成功';
 			break;
-		case 101:
-			$msg = '参数不能为空';
+		case 1:
+			$msg = 'token不存在或已失效，请重新登录';
 			break;
-		case 102:
-			$msg = '参数格式错误';
+		case 2:
+			$msg = '暂无操作权限';
 			break;
-		case 103:
-			$msg = '参数不存在';
-			break;
-		case 104:
-			$msg = '信息匹配失败';
-			break;
-		case 105:
-			$msg = '添加到数据库失败';
-			break;
-		case 106:
-			$msg = '图片上传失败';
-			break;
-		case 201:
-			$msg = '没有操作权限';
-			break;
-		case 998:
-			$msg = '系统繁忙，请稍后再试';
-			break;
-		case 999:
-			$msg = 'token错误或已失效，请重新登录';
+		case 3:
+			$msg = '请求超时，请稍后再试';
 			break;
 		default:
-			$msg = '系统繁忙';
+			$msg = '系统繁忙，请稍后再试';
 			break;
 	}
 	return $msg;
-
 }
 //统一返回数据格式
-function combineResult($error,$msg,$res){
+function return_json($error,$res,$msg){
 	$result['error'] = $error;
+	$result['data'] = $res;
 	if($msg == ''){
 		$result['msg'] = statusMsg($error);
 	}else{
 		$result['msg'] = $msg;
 	}
-	$result['data'] = $res;
-	return $result;
-}
-//解析并返回token
-function decodeToken($token){
-    $str = base64_decode($token);
-    $result['time'] = explode('&',$str)[0];
-    $result['phone'] = explode('&',$str)[1];
-    $result['rule'] = explode('&',$str)[2];
-    return $result;
-}
-//判断token是否过期
-function verifyToken($token){
-	$arr = decodeToken($token);
-	$now = strtotime('now');
-
-	$search['phone'] = $arr['phone'];
-	$data = M('user')->where($search)->find();
-
-	// token失效时间 10天
-	if($token == '' || $data['token']!=$token || $now-$arr['time'] > 864000){
-		$result['status'] = false;
-	}else{
-		$result['status'] = true;
-	}
-	$result['id'] = $data['id'];
-	$result['phone'] = $arr['phone'];
 	return $result;
 }
 
@@ -86,7 +41,7 @@ function verifyMobile($phone){
 		return false;
 	}
 }
-
+//测试
 function commonTest(){
 	return 'hello';
 }

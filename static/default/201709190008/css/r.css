@@ -1,0 +1,27 @@
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  .rbt,
+  .bor-top {
+    border-top: 0px !important;
+    background-repeat: repeat-x;
+    background-size: 100% 1px;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0));
+  }
+  .rbb,
+  .input-underline,
+  .select-underline,
+  .textarea-underline,
+  .list-box .list-item,
+  .list-box,
+  .bor-bottom,
+  .form-blank .form-item,
+  .card-header,
+  .form-blank .input,
+  .form-blank .select,
+  .form-blank .textarea {
+    border-bottom: 0px !important;
+    background-repeat: repeat-x;
+    background-size: 100% 1px;
+    background-position: bottom;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0));
+  }
+}

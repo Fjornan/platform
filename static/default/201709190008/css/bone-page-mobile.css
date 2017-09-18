@@ -1,0 +1,126 @@
+.page-login {
+  background: #f9f9f9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.page-login .login-box {
+  width: 80%;
+  margin-top: -30px;
+}
+.page-login .login-box h1 {
+  color: #444;
+  padding-bottom: 20px;
+}
+.page-login .login-box .input {
+  border-bottom: 0px !important;
+  background-repeat: repeat-x;
+  background-size: 100% 1px;
+  background-position: bottom;
+  background-color: #f9f9f9;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0));
+}
+.account-card .card-footer {
+  border-top: 0;
+}
+.account-card .card-header .card-title {
+  font-size: 15px;
+}
+.account-card .card-footer {
+  font-size: 24px;
+}
+.account-card .card-footer .account-btn {
+  font-size: 28px;
+  padding-left: 10px;
+}
+.account-card .card-footer .account-btn i {
+  font-size: 28px !important;
+}
+.account-card-blue {
+  background: #6EAADE;
+  color: #ebf3fa;
+}
+.account-card-blue .card-header {
+  color: #ffffff;
+  border-bottom: 1px #98c2e7 solid;
+}
+.account-card-blue .card-header .card-title {
+  color: #c1dbf1;
+}
+.account-card-blue .card-addon i {
+  color: #c1dbf1;
+}
+.account-card-blue .account-btn i {
+  font-size: 28px !important;
+  color: #c1dbf1;
+}
+.account-card-green {
+  background: #6BBD71;
+  color: #d5ecd7;
+}
+.account-card-green .card-header {
+  color: #ffffff;
+  border-bottom: 1px #8ecd93 solid;
+}
+.account-card-green .card-header .card-title {
+  color: #b2dcb5;
+}
+.account-card-green .card-addon i {
+  color: #b2dcb5;
+}
+.account-card-green .account-btn i {
+  font-size: 28px !important;
+  color: #b2dcb5;
+}
+.account-card-yellow {
+  background: #E17970;
+  color: #fcf0ee;
+}
+.account-card-yellow .card-header {
+  color: #ffffff;
+  border-bottom: 1px #eaa19a solid;
+}
+.account-card-yellow .card-header .card-title {
+  color: #f3c8c4;
+}
+.account-card-yellow .card-addon i {
+  color: #f3c8c4;
+}
+.account-card-yellow .account-btn i {
+  font-size: 28px !important;
+  color: #f3c8c4;
+}
+.question-content {
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.4em;
+  background: #fff;
+  padding: 14px;
+}
+.question-list {
+  border-top: 0;
+  border-bottom: 0;
+}
+.question-btn {
+  position: relative;
+}
+.question-btn .question-counter {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  margin-top: -10px;
+  height: 20px;
+  line-height: 20px;
+  color: #fff;
+}
