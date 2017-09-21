@@ -5,13 +5,13 @@ function statusMsg($error){
 		case 0:
 			$msg = '操作成功';
 			break;
-		case 1:
+		case 101:
 			$msg = 'token不存在或已失效，请重新登录';
 			break;
-		case 2:
+		case 102:
 			$msg = '暂无操作权限';
 			break;
-		case 3:
+		case 103:
 			$msg = '请求超时，请稍后再试';
 			break;
 		default:
@@ -21,14 +21,14 @@ function statusMsg($error){
 	return $msg;
 }
 //统一返回数据格式
-function return_json($error,$res,$msg){
+function return_json($error,$msg,$res){
 	$result['error'] = $error;
-	$result['data'] = $res;
 	if($msg == ''){
 		$result['msg'] = statusMsg($error);
 	}else{
 		$result['msg'] = $msg;
 	}
+	$result['data'] = $res;
 	return $result;
 }
 

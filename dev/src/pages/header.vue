@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="main-header">
     <div id="logo">
-      速派官网后台
+      鲸航跨境
     </div>
     <div id="main-menu" >
       <el-menu style="float:right" theme="dark"  class="el-menu-demo" mode="horizontal" @select="handleSelect">

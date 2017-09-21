@@ -2,7 +2,7 @@
   <div class="login-contain">
     <div class="login-logo">
       <!-- <img src="../assets/image/logo.png"> -->
-      <span>官网后台</span>
+      <span>鲸航跨境</span>
     </div>
     <div class="login-main">
       <div class="login-input">
@@ -36,11 +36,11 @@ export default {
       })
     },
     loginSubmit () {
-      this.$rqt.post('/index_admin/login', {
+      this.$rqt.post('/passport/login', {
           username:this.username,
           password:this.password
        }).success((res) => {
-          if(res.code){
+          if(res.error == 0){
             console.log(res.data)
             this.$auth.login({
               token: res.data
