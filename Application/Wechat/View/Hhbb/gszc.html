@@ -35,14 +35,14 @@
       <div class="pd2222">
         <div class="pro-title">
           <h3>
-            <img class="pro-bar" src="__PUBLIC__/image/bar.png"><?php echo $product[0]['name']?>
+            <img class="pro-bar" src="__PUBLIC__/image/bar.png">{$product[0]['name']}
             <label class="am-checkbox">
               <input type="checkbox" value="" data-am-ucheck>
             </label>
           </h3>
         </div>
         <div class="pro-price">
-          ￥4600元
+          ￥{$product[0]['price']}元
         </div>
         <ol class="pro-info">
           <li>您自己提供一个真实有效的非住宅地址</li>
@@ -56,26 +56,26 @@
       <div class="pd2222">
         <div class="pro-title">
           <h3>
-            <img class="pro-bar" src="__PUBLIC__/image/bar.png">工商注册+地址1年+小规模代理记账1年  
+            <img class="pro-bar" src="__PUBLIC__/image/bar.png">{$product[1]['name']}  
             
           </h3>
         </div>
         <div style="font-size: 14px;" class="pro-price">
-          ￥6500元 （下城区/江干区）
+          ￥{$product[1]['price']}元 （{$product[1]['sub_name']}）
           <label class="am-checkbox">
               <input type="checkbox" value="" data-am-ucheck>
             </label>
             <div class="clear"></div>
         </div>
         <div style="font-size: 14px;" class="pro-price">
-          ￥8600元 （西湖区）
+          ￥{$product[2]['price']}元 （{$product[2]['sub_name']}）
           <label class="am-checkbox">
               <input type="checkbox" value="" data-am-ucheck>
             </label>
             <div class="clear"></div>
         </div>
         <div style="font-size: 14px;" class="pro-price">
-          ￥6000元 （萧山区/余杭区）
+          ￥{$product[3]['price']}元 （{$product[3]['sub_name']}）
           <label class="am-checkbox">
               <input type="checkbox" value="" data-am-ucheck>
             </label>
