@@ -15,4 +15,7 @@ class SchoolController extends ComController {
     public function shopee(){
     	$this->display();
     }
+    public function other(){
+        $this->display();
+    }
 }
