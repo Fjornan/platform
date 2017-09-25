@@ -26,26 +26,107 @@
         <form class="am-form">
           <fieldset>
             <div class="am-form-group">
-              <label for="doc-ipt-email-1">公司名称 *</label>
-              <input type="email" class="am-form-field am-input-sm" id="company_name" placeholder="请输入公司名称">
+              <label for="com_name">公司名称 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="com_name" placeholder="请输入公司名称">
             </div>
 
             <div class="am-form-group">
-              <label for="doc-ipt-email-1">联系人姓名 *</label>
-              <input type="email" class="am-form-field am-input-sm" id="company_name" placeholder="请输入联系人姓名">
+              <label for="contact_name">联系人姓名 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="contact_name" placeholder="请输入联系人姓名">
             </div>
 
             <div class="am-form-group">
-              <label for="doc-ipt-email-1">联系人电话 *</label>
-              <input type="email" class="am-form-field am-input-sm" id="company_name" placeholder="请输入联系人电话">
+              <label for="contact_phone">联系人电话 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="contact_phone" placeholder="请输入联系人电话">
             </div>
 
             <div class="am-form-group">
-              <label for="doc-ipt-email-1">联系人邮箱 *</label>
-              <input type="email" class="am-form-field am-input-sm" id="company_name" placeholder="请输入联系人邮箱">
+              <label for="contact_email">联系人邮箱 *</label>
+              <input type="email" class="am-form-field am-input-sm" id="contact_email" placeholder="请输入联系人邮箱">
             </div>
 
+            <div class="am-form-group">
+              <label for="com_province">公司所在省份 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="com_province" placeholder="请输入公司所在省份">
+            </div>
+
+            <div class="am-form-group">
+              <label for="com_province">主营产品 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="com_province" placeholder="请输入公司主营产品">
+            </div>
+
+            <div class="am-form-group">
+              <label for="com_property">您所在公司的性质</label>
+              <select id="com_property">
+                <option value="-1">请选择</option>
+                <option value="自由品牌">自有品牌</option>
+                <option value="自有工厂">自有工厂</option>
+                <option value="经销商">经销商</option>
+                <option value="个人">个人</option>
+              </select>
+              <!-- <span class="am-form-caret"></span> -->
+            </div>
+
+            <div class="am-form-group">
+              <label for="com_sell">您的年销售额</label>
+              <input type="text" class="am-form-field am-input-sm" id="com_sell" placeholder="请输入您的年销售额">
+            </div>
+
+            <div class="am-form-group">
+              <label for="is_has_shop">您是否已在亚马逊海外站开店</label>
+              <select id="is_has_shop">
+                <option value="-1">请选择</option>
+                <option value="0">是</option>
+                <option value="1">否</option>
+              </select>
+            </div>
             
+            <div class="am-form-group">
+              <label for="purpose_site">您意向开通的站点</label>
+              <select id="putpose_site">
+                <option value="-1">请选择</option>
+                <option value="北美站">北美站</option>
+                <option value="欧洲站">欧洲站</option>
+                <option value="日本站">日本站</option>
+              </select>
+            </div>
+
+            <div class="am-form-group">
+              <label for="web_site">您的公司网址或网店地址（非必填）</label>
+              <input type="text" class="am-form-field am-input-sm" id="web_site" placeholder="请输入您的公司网址或网店地址">
+            </div>
+
+            <div class="am-form-group">
+              <label for="interet">您对哪项鲸航跨境服务感兴趣（方便我们为您定制服务）</label>
+              <label class="am-checkbox">
+                <input type="checkbox" value="公司注册">公司注册
+              </label>
+              <label class="am-checkbox">
+                <input type="checkbox" value="海外商标">海外商标
+              </label>
+              <label class="am-checkbox">
+                <input type="checkbox" value="亚马逊线上实操培训">亚马逊线上实操培训
+              </label>
+              <label class="am-checkbox">
+                <input type="checkbox" value="亚马逊线下高阶培训">亚马逊线下高阶培训
+              </label>
+              <label class="am-checkbox">
+                <input type="checkbox" value="跨境物流">跨境物流
+              </label>
+              <label class="am-checkbox">
+                <input type="checkbox" value="产品图片拍摄及翻译服务">产品图片拍摄及翻译服务
+              </label>
+              <label class="am-checkbox">
+                <input type="checkbox" value="跨境收款工具">跨境收款工具
+              </label>
+              <label class="am-checkbox">
+                <input type="checkbox" value="海外建站">海外建站
+              </label>
+              <label class="am-checkbox">
+                <input type="checkbox" value="运营人才输送">运营人才输送
+              </label>
+            </div>
+
             <button type="button" class="am-btn am-btn-secondary am-btn-block am-btn-sm">提交</button>
             
           </fieldset>
