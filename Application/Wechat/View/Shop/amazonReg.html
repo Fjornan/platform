@@ -26,33 +26,33 @@
         <form class="am-form">
           <fieldset>
             <div class="am-form-group">
-              <label for="com_name">公司名称 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="com_name" placeholder="请输入公司名称">
+              <label for="company">公司名称 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="company" placeholder="请输入公司名称">
             </div>
 
             <div class="am-form-group">
-              <label for="contact_name">联系人姓名 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="contact_name" placeholder="请输入联系人姓名">
+              <label for="username">联系人姓名 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="username" placeholder="请输入联系人姓名">
             </div>
 
             <div class="am-form-group">
-              <label for="contact_phone">联系人电话 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="contact_phone" placeholder="请输入联系人电话">
+              <label for="phone">联系人电话 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="phone" placeholder="请输入联系人电话">
             </div>
 
             <div class="am-form-group">
-              <label for="contact_email">联系人邮箱 *</label>
-              <input type="email" class="am-form-field am-input-sm" id="contact_email" placeholder="请输入联系人邮箱">
+              <label for="email">联系人邮箱 *</label>
+              <input type="email" class="am-form-field am-input-sm" id="email" placeholder="请输入联系人邮箱">
             </div>
 
             <div class="am-form-group">
-              <label for="com_province">公司所在省份 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="com_province" placeholder="请输入公司所在省份">
+              <label for="province">公司所在省份 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="province" placeholder="请输入公司所在省份">
             </div>
 
             <div class="am-form-group">
-              <label for="com_province">主营产品 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="com_province" placeholder="请输入公司主营产品">
+              <label for="product">主营产品 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="product" placeholder="请输入公司主营产品">
             </div>
 
             <div class="am-form-group">
@@ -68,13 +68,13 @@
             </div>
 
             <div class="am-form-group">
-              <label for="com_sell">您的年销售额</label>
-              <input type="text" class="am-form-field am-input-sm" id="com_sell" placeholder="请输入您的年销售额">
+              <label for="year_sell">您的年销售额</label>
+              <input type="text" class="am-form-field am-input-sm" id="year_sell" placeholder="请输入您的年销售额">
             </div>
 
             <div class="am-form-group">
-              <label for="is_has_shop">您是否已在亚马逊海外站开店</label>
-              <select id="is_has_shop">
+              <label for="has_shop">您是否已在亚马逊海外站开店</label>
+              <select id="has_shop">
                 <option value="-1">请选择</option>
                 <option value="0">是</option>
                 <option value="1">否</option>
@@ -127,7 +127,7 @@
               </label>
             </div>
 
-            <button type="button" class="am-btn am-btn-secondary am-btn-block am-btn-sm">提交</button>
+            <button id="submit" type="button" class="am-btn am-btn-secondary am-btn-block am-btn-sm">提交</button>
             
           </fieldset>
         </form>
@@ -135,5 +135,39 @@
       
     </section>
 
+<div class="am-modal am-modal-alert" tabindex="-1" id="myAlert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">提示</div>
+    <div class="am-modal-bd">
+      <span id="alertMsg">消息提示</span>
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn">确定</span>
+    </div>
+  </div>
+</div>
 </body>
 </html>
+<script type="text/javascript">
+$('#submit').click(function(){
+  $.ajax( {  
+    url: Api+'/shop/apiAmazonReg',// 跳转到 action  
+    data:{  
+         company:$('#company').val();
+    },  
+    type:'post',   
+    success:function(data) {  
+      if(data.error == 0 ){  
+        console.log(data);
+      }
+      $('#alertMsg').text(data.msg);
+      $('#myAlert').modal('toggle');
+     },  
+     error:function(data) {  
+       console.log(data)
+     }  
+  }); 
+})
+
+
+</script>

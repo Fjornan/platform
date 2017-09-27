@@ -10,6 +10,32 @@ class UnionController extends ComController {
     public function seekGoods(){
     	$this->display();
     }
+    public function submitSeekGoods(){
+        if(session('id') == null){
+            $error = 1;
+            $msg = '登录失效，请退出重新进入';
+        }else{
+            $db_seek = M('seekgoods');
+            $data['user_id'] = session('id');
+            $data['company'] = I('post.company');
+            $data['username'] = I('post.username');
+            $data['phone'] = I('post.phone');
+            $data['product'] = I('post.product');
+            $data['advantage'] = I('post.advantage');
+            $add_res = $db_seek->add($data);
+            if($add_res>0){
+                $error = 0;
+                $msg = '提交成功，请等待客服联系';
+            }else{
+                $msg = 1;
+                $msg = '提交失败，请稍后再试';
+            }
+            $res = $add_res;
+        }
+
+        $result = return_json($error,$msg,$res);
+        $this->ajaxReturn($result);
+    }
     //有货源
     public function hasGoods(){
     	$this->display();
