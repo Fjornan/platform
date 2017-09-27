@@ -27,7 +27,8 @@ class ComController extends Controller{
 
 		//查询数据库中的用户记录
 		$db_user = M('user');
-		$userinfo = $db_user->where('openid='.$openid)->find();
+		$condition['openid'] = $openid;
+		$userinfo = $db_user->where($condition)->find();
 		if($userinfo){
 			$id = $userinfo['id'];
 			$member = $userinfo['is_member'];

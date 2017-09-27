@@ -8,7 +8,7 @@ class MemberController extends ComController {
     }
     //申领鲸卡
     public function register(){
-    	session(null);
+    	
     	$this->display();
     }
 }
