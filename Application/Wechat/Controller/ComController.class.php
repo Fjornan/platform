@@ -8,11 +8,11 @@ class ComController extends Controller{
 	public function _initialize(){
 		// session('id',1);
 		// session('member',0);
-		if(session('id') == null || session('openid') == null){
-			$this->getUserInfo();
-		}else{
+		// if(session('id') == null || session('openid') == null){
+		// 	$this->getUserInfo();
+		// }else{
 
-		}
+		// }
 	}
 	private function getUserInfo(){
 		//通过code换取token  
