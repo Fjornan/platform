@@ -9,4 +9,7 @@ class ComController extends Controller{
 		//判断是否存在session
 		
 	}
+	private function isAdmin(){
+		
+	}
 }

@@ -45,7 +45,7 @@ export default {
             this.$auth.login({
               token: res.data
             })
-            this.$router.push('/slider')
+            this.$router.push('/user')
           }else{
             this.$message({
                 message: res.msg,

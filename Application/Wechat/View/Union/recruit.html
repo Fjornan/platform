@@ -7,7 +7,7 @@
 <body>
   <header data-am-widget="header" class="am-header am-header-default">
         <div class="am-header-left am-header-nav">
-            <a href="{:U('hhbb/index')}" class="">
+            <a href="{:U('union/index')}" class="">
             <i class="fa fa-chevron-left fa-lg"></i>
             </a>
         </div>
@@ -28,37 +28,96 @@
 
             <div class="am-form-group">
               <label for="doc-ipt-email-1">公司名称 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="company_name" placeholder="请输入公司名称">
+              <input type="text" class="am-form-field am-input-sm" id="company" placeholder="请输入公司名称">
             </div>
 
             <div class="am-form-group">
               <label for="doc-ipt-email-1">联系人姓名 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="company_name" placeholder="请输入联系人姓名">
+              <input type="text" class="am-form-field am-input-sm" id="username" placeholder="请输入联系人姓名">
             </div>
 
             <div class="am-form-group">
               <label for="doc-ipt-email-1">联系人电话 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="company_name" placeholder="请输入联系人电话">
+              <input type="text" class="am-form-field am-input-sm" id="phone" placeholder="请输入联系人电话">
             </div>
 
             <div class="am-form-group">
               <label for="doc-ipt-email-1">需求岗位 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="company_name" placeholder="请输入需求岗位">
+              <input type="text" class="am-form-field am-input-sm" id="job" placeholder="请输入需求岗位">
             </div>
 
             <div class="am-form-group">
               <label for="doc-ta-1">公司介绍 *</label>
-              <textarea class="" rows="5" id="doc-ta-1"></textarea>
+              <textarea class="" rows="5" id="introduce"></textarea>
             </div>
 
             
-            <button type="button" class="am-btn am-btn-secondary am-btn-block am-btn-sm">提交信息</button>
+            <button id="submit" type="button" class="am-btn am-btn-secondary am-btn-block am-btn-sm">提交信息</button>
             
           </fieldset>
         </form>
       </div>
       
     </section>
+<div class="am-modal am-modal-alert" tabindex="-1" id="myAlert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">提示</div>
+    <div class="am-modal-bd">
+      <span id="alertMsg">消息提示</span>
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn">确定</span>
+    </div>
+  </div>
+</div>
 
+<div class="am-modal am-modal-alert" tabindex="-1" id="vipAlert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">提示</div>
+    <div class="am-modal-bd">
+      <span id="vipMsg"></span>
+    </div>
+    <a href="{:U('member/register')}">
+    <div class="am-modal-footer">
+      <span class="vip-button">确定</span>
+    </div>
+    </a>
+  </div>
+</div>
 </body>
 </html>
+<script type="text/javascript">
+$('#submit').click(function(){
+  var d = {};
+  d.company = $('#company').val();
+  d.username = $('#username').val();
+  d.phone = $('#phone').val();
+  d.job = $('#job').val();
+  d.introduce = $('#introduce').val();
+  if(d.company == '' || d.username == '' || d.phone == '' || d.job == '' || d.introduce == ''){
+    $('#alertMsg').text('请填写带 * 信息');
+    $('#myAlert').modal('toggle');
+    return false;
+  }
+  $.ajax({  
+    url: Api+'/union/submitRecruit',// 跳转到 action  
+    data:d,
+    type:'post',   
+    success:function(data) {  
+      if(data.error == 0 ){  
+        console.log(data);
+      }else if(data.error == 202){
+        $('#vipMsg').text(data.msg);
+        $('#vipAlert').modal('toggle');
+      }
+      $('#alertMsg').text(data.msg);
+      $('#myAlert').modal('toggle');
+     },  
+     error:function(data) {  
+       console.log(data)
+     }  
+  }); 
+})
+
+
+</script>

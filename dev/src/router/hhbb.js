@@ -7,9 +7,15 @@ const order =  (resolve) => {
   })
 }
 
-const setting =  (resolve) => {
-  require.ensure(['../pages/hhbb/setting'], () => {
-    resolve(require('../pages/hhbb/setting'))
+const product =  (resolve) => {
+  require.ensure(['../pages/hhbb/product'], () => {
+    resolve(require('../pages/hhbb/product'))
+  })
+}
+
+const proedit =  (resolve) => {
+  require.ensure(['../pages/hhbb/product-edit'], () => {
+    resolve(require('../pages/hhbb/product-edit'))
   })
 }
 
@@ -22,8 +28,12 @@ export default {
       component: order
     },
     {
-      path: 'setting',
-      component: setting
+      path: 'product',
+      component: product
+    },
+    {
+      path: 'proedit/:id',
+      component: proedit
     },
   ]
 }

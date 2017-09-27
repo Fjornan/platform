@@ -43,41 +43,41 @@
           <fieldset>
             <div class="am-form-group">
               <label for="doc-ipt-email-1">公司名称 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="company_name" placeholder="请输入公司名称">
+              <input type="text" class="am-form-field am-input-sm" id="company" placeholder="请输入公司名称">
             </div>
 
             <div class="am-form-group">
               <label for="doc-ipt-email-1">发货联系人 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="company_name" placeholder="请输入发货联系人">
+              <input type="text" class="am-form-field am-input-sm" id="username" placeholder="请输入发货联系人">
             </div>
 
             <div class="am-form-group">
               <label for="doc-ipt-email-1">发货联系人电话 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="company_name" placeholder="请输入发货联系人电话">
+              <input type="text" class="am-form-field am-input-sm" id="phone" placeholder="请输入发货联系人电话">
             </div>
 
             <div class="am-form-group">
               <label for="doc-ipt-email-1">所发产品 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="company_name" placeholder="请输入所发产品">
+              <input type="text" class="am-form-field am-input-sm" id="product" placeholder="请输入所发产品">
             </div>
 
             <div class="am-form-group">
               <label for="doc-ipt-email-1">发货重量（KG） *</label>
-              <input type="text" class="am-form-field am-input-sm" id="company_name" placeholder="请输入发货重量">
+              <input type="text" class="am-form-field am-input-sm" id="weight" placeholder="请输入发货重量">
             </div>
 
             <div class="am-form-group">
               <label for="doc-ipt-email-1">发货/取货地址 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="company_name" placeholder="请输入发货取货地址">
+              <input type="text" class="am-form-field am-input-sm" id="address_from" placeholder="请输入发货取货地址">
             </div>
 
             <div class="am-form-group">
               <label for="doc-ipt-email-1">发货目的亚马逊站点 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="company_name" placeholder="请输入发货目的亚马逊站点">
+              <input type="text" class="am-form-field am-input-sm" id="address_to" placeholder="请输入发货目的亚马逊站点">
             </div>
 
             
-            <button type="button" class="am-btn am-btn-secondary am-btn-block am-btn-sm">提交需求</button>
+            <button id="submit" type="button" class="am-btn am-btn-secondary am-btn-block am-btn-sm">提交需求</button>
             
           </fieldset>
         </form>
@@ -101,13 +101,102 @@
           <fieldset>
             <div class="am-form-group">
               <label for="doc-ipt-email-1">选择国家 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="company_name" placeholder="请输入国家名称">
+              <input type="text" class="am-form-field am-input-sm" id="country" placeholder="请输入国家名称">
             </div>
-            <button type="button" class="am-btn am-btn-secondary am-btn-block am-btn-sm">提交需求，等待工作人员联系</button>
+            <button id="ware_submit" type="button" class="am-btn am-btn-secondary am-btn-block am-btn-sm">提交需求，等待工作人员联系</button>
           </fieldset>
         </form>
       </div>
     </section>
+<div class="am-modal am-modal-alert" tabindex="-1" id="myAlert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">提示</div>
+    <div class="am-modal-bd">
+      <span id="alertMsg">消息提示</span>
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn">确定</span>
+    </div>
+  </div>
+</div>
 
+<div class="am-modal am-modal-alert" tabindex="-1" id="vipAlert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">提示</div>
+    <div class="am-modal-bd">
+      <span id="vipMsg"></span>
+    </div>
+    <a href="{:U('member/register')}">
+    <div class="am-modal-footer">
+      <span class="vip-button">确定</span>
+    </div>
+    </a>
+  </div>
+</div>
 </body>
 </html>
+<script type="text/javascript">
+$('#submit').click(function(){
+  var d = {};
+  d.company = $('#company').val();
+  d.username = $('#username').val();
+  d.phone = $('#phone').val();
+  d.product = $('#product').val();
+  d.weight = $('#weight').val();
+  d.address_from = $('#address_from').val();
+  d.address_to = $('#address_to').val();
+  
+  if(d.company == '' || d.username == '' || d.phone == '' || d.product == '' || d.weight == '' || d.address_from == '' || d.address_to == ''){
+    $('#alertMsg').text('请填写带 * 信息');
+    $('#myAlert').modal('toggle');
+    return false;
+  }
+  $.ajax({  
+    url: Api+'/logistics/submitLogistics',// 跳转到 action  
+    data:d,
+    type:'post',   
+    success:function(data) {  
+      if(data.error == 0 ){  
+        console.log(data);
+      }else if(data.error == 202){
+        $('#vipMsg').text(data.msg);
+        $('#vipAlert').modal('toggle');
+      }
+      $('#alertMsg').text(data.msg);
+      $('#myAlert').modal('toggle');
+     },  
+     error:function(data) {  
+       console.log(data)
+     }  
+  }); 
+})
+
+$('#ware_submit').click(function(){
+  var d = {};
+  d.country = $('#country').val();
+  
+  if(d.country == ''){
+    $('#alertMsg').text('请填写带 * 信息');
+    $('#myAlert').modal('toggle');
+    return false;
+  }
+  $.ajax({  
+    url: Api+'/logistics/submitWare',// 跳转到 action  
+    data:d,
+    type:'post',   
+    success:function(data) {  
+      if(data.error == 0 ){  
+        console.log(data);
+      }else if(data.error == 202){
+        $('#vipMsg').text(data.msg);
+        $('#vipAlert').modal('toggle');
+      }
+      $('#alertMsg').text(data.msg);
+      $('#myAlert').modal('toggle');
+     },  
+     error:function(data) {  
+       console.log(data)
+     }  
+  }); 
+})
+</script>
