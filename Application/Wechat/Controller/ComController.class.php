@@ -32,7 +32,6 @@ class ComController extends Controller{
 		session('id',$id);
 		session('openid',$openid);
 		session('member',$member);
-		echo $id.'--'.$openid.'--'.$member;
 		//拿到token后就可以获取用户基本信息了  
 		// $url = "https://api.weixin.qq.com/sns/userinfo?access_token=$token&openid=$openid ";  
 		// $json = file_get_contents($url);//获取微信用户基本信息  
