@@ -9,7 +9,7 @@ class WxtestController extends Controller{
 		if(session('id') == null || session('openid') == null){
 			$this->getUserInfo();
 		}else{
-			
+
 		}
 		
 	}
@@ -27,7 +27,7 @@ class WxtestController extends Controller{
 		$add_data['openid'] = $openid;
 		$db_user = M('user');
 		$id = $db_user->add($add_data);  
-		$memeber = $db_user->where('id='.$id)->getField('is_memeber');
+		$memeber = $db_user->where('id='.$id)->getField('is_member');
 		session('id',$id);
 		session('openid',$openid);
 		session('member',$member);
