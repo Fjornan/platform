@@ -69,6 +69,20 @@
     </div>
   </div>
 </div>
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="vipAlert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">提示</div>
+    <div class="am-modal-bd">
+      <span id="vipMsg"></span>
+    </div>
+    <a href="{:U('member/register')}">
+    <div class="am-modal-footer">
+      <span class="vip-button">确定</span>
+    </div>
+    </a>
+  </div>
+</div>
 </body>
 </html>
 
@@ -93,7 +107,8 @@ $('#submit').click(function(){
       if(data.error == 0 ){  
         console.log(data);
       }else if(data.error == 202){
-        window.location.href="{:U('member/register')}"
+        $('#vipMsg').text(data.msg);
+        $('#vipAlert').modal('toggle');
       }
       $('#alertMsg').text(data.msg);
       $('#myAlert').modal('toggle');
