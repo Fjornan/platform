@@ -1,7 +1,7 @@
 <?php
 namespace Wechat\Controller;
 
-class MemberController extends CommonController {
+class MemberController extends ComController {
 	//我的鲸卡
     public function index(){
         $this->display();
