@@ -8,11 +8,11 @@ class ComController extends Controller{
 	public function _initialize(){
 		// session('id',1);
 		// session('member',0);
-		// if(session('id') == null || session('openid') == null){
-		// 	$this->getUserInfo();
-		// }else{
+		if(session('id') == null || session('openid') == null){
+			$this->getUserInfo();
+		}else{
 
-		// }
+		}
 	}
 	private function getUserInfo(){
 		//通过code换取token  
@@ -25,10 +25,18 @@ class ComController extends Controller{
 		$token = $arr['access_token'];  
 		$openid = $arr['openid'];
 
-		$add_data['openid'] = $openid;
+		//查询数据库中的用户记录
 		$db_user = M('user');
-		$id = $db_user->add($add_data);  
-		$memeber = $db_user->where('id='.$id)->getField('is_member');
+		$userinfo = $db_user->where('openid='.$openid)->find();
+		if($userinfo){
+			$id = $userinfo['id'];
+			$member = $userinfo['is_member'];
+		}else{
+			//不存在插入一条用户数据
+			$add_data['openid'] = $openid;
+			$id = $db_user->add($add_data);  
+			$memeber = $db_user->where('id='.$id)->getField('is_member');
+		}
 		session('id',$id);
 		session('openid',$openid);
 		session('member',$member);

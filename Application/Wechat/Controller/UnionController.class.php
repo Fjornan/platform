@@ -12,8 +12,10 @@ class UnionController extends ComController {
     }
     public function submitSeekGoods(){
         if(session('id') == null){
-            $error = 1;
+            $error = 201;
             $msg = '登录失效，请退出重新进入';
+        }else if(session('member')!=1){
+            $error = 202;
         }else{
             $db_seek = M('seekgoods');
             $data['user_id'] = session('id');

@@ -14,6 +14,12 @@ function statusMsg($error){
 		case 103:
 			$msg = '请求超时，请稍后再试';
 			break;
+		case 202:
+			$msg = '成为鲸航Vip用户才可操作哟';
+			break;
+		case 201:
+			$msg = '登录失效，请退出重新进入';
+			break;
 		default:
 			$msg = '系统繁忙，请稍后再试';
 			break;
