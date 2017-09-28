@@ -24,13 +24,13 @@
         <img style="width: 80%;" src="__PUBLIC__/image/banner/banner-hhbb.jpeg">
       </div>
       <div class="abstract">
-        <h3>品牌建站</h3>
-        <p>一键开启跨境电商自建站</p>
+        <h3>跨境运营支持</h3>
+        <p>他山之石，可以攻玉</p>
       </div>
       <div class="introduce am-g">
-        <div class="am-u-sm-4"><i class="fa fa-circle"></i> 跨境SOHO</div>
-        <div class="am-u-sm-4"><i class="fa fa-circle"></i> 平台卖家</div>
-        <div class="am-u-sm-4"><i class="fa fa-circle"></i> 品牌展示</div>
+        <div class="am-u-sm-4"><i class="fa fa-circle"></i> 海外评测</div>
+        <div class="am-u-sm-4"><i class="fa fa-circle"></i> 防关联</div>
+        <div class="am-u-sm-4"><i class="fa fa-circle"></i> 运营工具推荐</div>
       </div>
       <div class="cut-line-bold"></div>
       <div class="pd2222">
@@ -43,12 +43,34 @@
           </h3>
         </div>
         <div class="pro-price">
-          ￥{$product[0]['price']}{$product[0]['unit']}
+          ￥{$product[0]['price']}元{$product[0]['unit']}
+        </div>
+
+        <div class="pro-title">
+          <h3>
+            <img class="pro-bar" src="__PUBLIC__/image/bar.png">{$product[1]['name']}{$product[1]['sub_name']}
+            <label class="am-checkbox">
+              <input type="checkbox" data-price="{$product[1]['price']}" value="{$product[1]['sign']}" data-am-ucheck>
+            </label>
+          </h3>
+        </div>
+        <div class="pro-price">
+          ￥{$product[1]['price']}元{$product[1]['unit']}
+        </div>
+
+        <div class="pro-title">
+          <h3>
+            <img class="pro-bar" src="__PUBLIC__/image/bar.png">{$product[2]['name']}{$product[2]['sub_name']}
+            <label class="am-checkbox">
+              <input type="checkbox" data-price="{$product[2]['price']}" value="{$product[2]['sign']}" data-am-ucheck>
+            </label>
+          </h3>
+        </div>
+        <div class="pro-price">
+          ￥{$product[2]['price']}元{$product[2]['unit']}
         </div>
         <ol class="pro-info">
-          <li>亚马逊品牌备案必须</li>
-          <li>高级班商务版可选：2999元-4999元</li>
-          <li>定制化开发，下单后，工作人员会与您联系</li>
+          <li>下单后，工作人员会与您联系</li>
         </ol>
       </div>
       <a id="submit" class="bottom-btn">
@@ -74,7 +96,7 @@
   var d = {};
   d.product_sign = product_sign;
   d.price = price;
-  d.service_sign = 'ppjz';
+  d.service_sign = 'yyzc';
   if(d.product_sign == ''){
     $('#alertMsg').text('请至少选择一个产品');
     $('#myAlert').modal('toggle');

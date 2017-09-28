@@ -28,6 +28,30 @@ class HhbbController extends ComController {
         $this->assign('product',$data);
     	$this->display();
     }
+
+    public function submitPatent(){
+        if(session('id') == null){
+            $error = 201;
+        }else if(session('member') == 0){
+            $error = 202;
+        }else{
+            $db = M('patent');
+            $data['user_id'] = session('id');
+            $data['note'] = I('post.note');
+            $add_res = $db->add($data);
+            if($add_res>0){
+                $error = 0;
+                $msg = '提交成功，请等待客服联系';
+            }else{
+                $msg = 1;
+                $msg = '提交失败，请稍后再试';
+            }
+            $res = $add_res;
+        }
+
+        $result = return_json($error,$msg,$res);
+        $this->ajaxReturn($result);
+    }
     //VAT
     public function vat(){
         $db_pro = M('product');
@@ -117,6 +141,16 @@ class HhbbController extends ComController {
         $data = $db_pro->where($condition)->select();
         $this->assign('product',$data);
     	$this->display();
+    }
+    //运营支持
+    public function yyzc(){
+        $db_pro = M('product');
+        $condition['service_sign'] = 'yyzc';
+        $condition['use'] = '0';
+        $condition['_logic'] = 'AND';
+        $data = $db_pro->where($condition)->select();
+        $this->assign('product',$data);
+        $this->display();
     }
 
 }

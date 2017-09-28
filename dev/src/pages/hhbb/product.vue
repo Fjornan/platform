@@ -60,7 +60,8 @@ export default {
         yygj: '跨境电商运营工具',
         hwpc: '海外评测资源',
         vps: 'VPS网络支持',
-        ppjz: '品牌建站'
+        ppjz: '品牌建站',
+        yyzc: '跨境运营支持'
       },
       type: 'gszc',
       product: []

@@ -35,28 +35,79 @@
       <div class="cut-line-bold"></div>
       <div class="pd2222">
         <div class="pro-title">
-          <h3>
-            <img class="pro-bar" src="__PUBLIC__/image/bar.png">UPC
-            <label class="am-checkbox">
+          <h3 class="flex-box">
+            <span class="flex-1">
+            <img class="pro-bar" src="__PUBLIC__/image/bar.png">{$product[0]['name']}{$product[0]['sub_name']}
+            </span>
+            <span style="position: relative;top: 5px;">
+              <a id="minus" class="pd2222"><i class="fa fa-minus"></i></a>
+              <span id="amount">1</span>
+              <a id="plus" class="pd2222"><i class="fa fa-plus"></i></a>
+            </span>
+            <!-- <label class="am-checkbox">
               <input type="checkbox" value="" data-am-ucheck>
-            </label>
+            </label> -->
+
           </h3>
         </div>
         <div class="pro-price">
-          ￥0.5元/个
+          ￥{$product[0]['price']}元{$product[0]['unit']}
         </div>
         <ol class="pro-info">
           <li>每个UPC码只能使用一次</li>
           <li>提供数字码+条形码</li>
           <li>每个UPC码可在任何亚马逊站点使用，不限制类目</li>
           <li>一个SKU对应一个UPC码，一款手机，2种尺寸，5种配色，则需要10个UPC码</li>
-          <li>下单后，工作人员会将UPC码发到您的<span style="color: red">邮箱</span></li>
+          <li style="color: red">下单后，工作人员会将UPC码发到您的鲸航VIP注册邮箱</li>
         </ol>
       </div>
-      <a class="bottom-btn">
+      <a id="submit" class="bottom-btn">
         立即开通
       </a>
     </section>
 <include file="Public/alert"/>
 </body>
 </html>
+<script type="text/javascript">
+var price = '<?php echo $product[0]["price"]?>';
+var amount = 1;
+$('#minus').click(function(){
+  if(amount>1){
+    amount--;
+  }
+  $('#amount').text(amount);
+})
+
+$('#plus').click(function(){
+    amount++;
+  $('#amount').text(amount);
+})
+
+$('#submit').click(function(){
+  var d = {}; 
+  d.product_sign = 'upc_1';
+  d.price = amount*price;
+  d.service_sign = 'upc';
+  d.note = amount+'个';
+  console.log(d);
+  $.ajax({  
+    url: Api+'/order/confirm',  
+    data:d,
+    type:'post',   
+    success:function(data) {  
+      if(data.error == 0 ){  
+        console.log(data);
+        window.location.href = Api+"/wxpay/index?id="+data.data;
+      }else if(data.error == 202){
+        $('#vipMsg').text(data.msg);
+        $('#vipAlert').modal('toggle');
+      }
+      // $('#alertMsg').text(data.msg);
+      // $('#myAlert').modal('toggle');
+     },  
+     error:function(data) {  
+       console.log(data)
+     }  
+  }); 
+})
+</script>
