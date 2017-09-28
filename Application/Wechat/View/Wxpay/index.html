@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <include file="Public/header"/>
+</head>
+<body>
+  <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <a href="{:U('order/index')}" class="">
+            <i class="fa fa-chevron-left fa-lg"></i>
+            </a>
+        </div>
+        <h1 class="am-header-title">
+         鲸航跨境 - 专注跨境服务
+        </h1>
+        <div class="am-header-right am-header-nav">
+            <a href="#right-link" class=""></a>
+        </div>
+    </header>
+    <section class="jhkj-contain">
+      <div class="abstract flex-box">
+        <h3 class="flex-1" style="padding-bottom: 10px;">
+        订单详情
+        </h3>
+        <span style="color: #00a2ff">
+          {$status}
+        </span>
+      </div>
+      <div class="pd2222">
+        <ul>
+        <?php foreach($detail as $item){?>
+        <li>
+          <p><?=$item['name'].$item['sub_name']?></p>
+        </li>
+        <?php }?>
+      </ul>
+
+      </div>
+      <div class="pd2222">
+        <div style="border-color: #00a2ff" class="cut-line-thin"></div>
+        <div class="pd2020">
+          总价：<span style="color:#00a2ff">{$price}</span> 元
+        </div>
+      </div>
+      
+      
+      
+      <a style="position: absolute;bottom: 0px" class="bottom-btn">
+        立即支付
+      </a>
+    </section>
+
+</body>
+</html>
