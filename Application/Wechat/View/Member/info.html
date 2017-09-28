@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <include file="Public/header"/>
+</head>
+<body>
+  <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <a href="#left-link" class="">
+            <!-- <i class="fa fa-angle-left fa-lg"></i> -->
+            </a>
+        </div>
+        <h1 class="am-header-title">
+         鲸航跨境 - 专注跨境服务
+        </h1>
+        <div class="am-header-right am-header-nav">
+            <a href="#right-link" class=""></a>
+        </div>
+    </header>
+    <section class="jhkj-contain">
+      <div class="banner tc" style="position: relative;">
+        <img style="width: 300px;padding-top: 10px;" src="__PUBLIC__/image/card.png">
+        <span style="position: absolute; bottom: 100px;left: 0;right: 0">No.{$user['member_num']}</span>
+      </div>
+      
+      <div class="cut-line-bold"></div>
+      <div class="pd2222">
+        <form class="am-form">
+          <fieldset>
+            <div class="am-form-group">
+              <label for="doc-ipt-email-1">姓名 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="name" value="{$user['name']}" placeholder="请输入姓名">
+            </div>
+
+            <div class="am-form-group">
+              <label for="doc-ipt-email-1">手机号码 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="phone" value="{$user['phone']}" placeholder="请输入手机号码">
+            </div>
+
+            <div class="am-form-group">
+              <label for="doc-ipt-email-1">邮箱 *</label>
+              <input type="email" class="am-form-field am-input-sm" id="email" value="{$user['email']}" placeholder="请输入邮箱">
+            </div>
+
+            <div class="am-form-group">
+              <label for="doc-ipt-email-1">公司名称 </label>
+              <input type="text" class="am-form-field am-input-sm" id="company" value="{$user['company']}" placeholder="请输入公司名称">
+            </div>
+
+            <div class="am-form-group">
+              <label for="doc-ipt-email-1">产品 </label>
+              <input type="text" class="am-form-field am-input-sm" id="product" value="{$user['product']}" placeholder="请输入公司名称">
+            </div>
+            <button id="submit" type="button" class="am-btn am-btn-secondary am-btn-block am-btn-sm">完善信息</button>
+          </fieldset>
+        </form>
+      </div>
+    </section>
+<include file="Public/alert"/>
+</body>
+</html>
+<script type="text/javascript">
+$('#submit').click(function(){
+  var d = {};
+  d.name = $('#name').val();
+  d.phone = $('#phone').val();
+  d.email = $('#email').val();
+  d.company = $('#company').val();
+  d.product = $('#product').val();
+  if(d.name == '' || d.phone == '' || d.email ==''){
+    $('#alertMsg').text('请填写带 * 信息');
+    $('#myAlert').modal('toggle');
+    return false;
+  }
+  $.ajax({  
+    url: Api+'/member/updateInfo',// 跳转到 action  
+    data:d,
+    type:'post',   
+    success:function(data) {  
+      $('#alertMsg').text(data.msg);
+      $('#myAlert').modal('toggle');
+      
+     },  
+     error:function(data) {  
+       console.log(data)
+     }  
+  }); 
+})
+</script>

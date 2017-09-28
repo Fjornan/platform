@@ -316,6 +316,11 @@ fieldset{
 .order-container{
   min-height: 200px;
 }
+.amazonnew-list{
+  padding:10px 40px;
+  line-height: 1.5;
+  font-size: 12px;
+}
 
 
 

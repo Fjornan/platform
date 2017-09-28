@@ -13,7 +13,8 @@
 
   <el-table :data="user" stripe style="width: 100%;text-align:left">
     <el-table-column prop="name" label="姓名"></el-table-column>
-    <el-table-column prop="mobile" label="手机号"></el-table-column>
+    <el-table-column prop="member_num" label="卡号"></el-table-column>
+    <el-table-column prop="phone" label="手机号"></el-table-column>
     <el-table-column prop="email" label="邮箱"></el-table-column>
     <el-table-column prop="company" label="公司"></el-table-column>
     <el-table-column prop="product" label="主营产品"></el-table-column>
@@ -22,14 +23,13 @@
         <span>{{ displayType[scope.row.display] }}</span>
       </template>
     </el-table-column> -->
-    <el-table-column label="操作" width="150">
+    <!-- <el-table-column label="操作" width="150">
       <template scope="scope">
         <router-link :to="{path: '/recruit/edit/'+scope.row.id}">
           <el-button size="small">用户详情</el-button>
         </router-link>
-        <!-- <el-button type="danger" size="small" @click="handleDelete(scope.$index, scope.row)">删除</el-button> -->
       </template>
-    </el-table-column>
+    </el-table-column> -->
   </el-table>
 </div>
   
