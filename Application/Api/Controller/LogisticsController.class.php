@@ -59,7 +59,14 @@ class LogisticsController extends ComController {
                 $condition['status'] = $status;
             }
             $db = M('warehouse');
-            $res = $db->where($condition)->order('id desc')->limit($offset,$page)->select();
+            $getData = $db->where($condition)->order('id desc')->limit($offset,$page)->select();
+            for($i=0;$i<count($getData);$i++){
+                // $search['id'] = $getData[$i]['user_id'];
+                $userinfo = getUserInfo($getData[$i]['user_id']);
+                $getData[$i]['name'] = $userinfo['name'];
+                $getData[$i]['phone'] = $userinfo['phone'];
+            }
+            $res = $getData;
             $error = 0;
         }
         $result = return_json($error,$msg,$res);

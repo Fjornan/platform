@@ -2,7 +2,7 @@
 <div class="p2222">
   <div class="p2020 m0020 bor-bottom pos-re">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/union/recruit' }">求才</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/hhbb/patent' }">专利及项目申报</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- <div class="bread-btn">
       <router-link :to="{path: '/user/add'}" >
@@ -20,12 +20,10 @@
   </el-select>
 
   <el-table :data="tableData" stripe style="width: 100%;text-align:left">
-    <el-table-column prop="company" label="公司名称"></el-table-column>
-    <el-table-column prop="username" label="联系人姓名"></el-table-column>
-    <el-table-column prop="phone" label="联系人电话"></el-table-column>
-    <el-table-column prop="job" label="需求岗位"></el-table-column>
-    <el-table-column prop="introduce" label="公司介绍"></el-table-column>
-    <el-table-column prop="create_time" label="提交时间"></el-table-column>
+    <el-table-column prop="name" label="会员姓名" width="120"></el-table-column>
+    <el-table-column prop="note" label="申报说明"></el-table-column>
+    <el-table-column prop="phone" label="联系方式" width="120"></el-table-column>
+    <el-table-column prop="create_time" label="提交时间" width="120"></el-table-column>
     <el-table-column label="操作" width="100">
       <template scope="scope">
         <el-button v-if="scope.row.status == 0" type="danger" size="small" @click="handleFinish(scope.$index, scope.row)">确认处理</el-button>
@@ -59,7 +57,7 @@ export default {
   methods: {
     getData() {
       /* eslint-disable */
-       this.$rqt.post('/union/getRecruit', {
+       this.$rqt.post('/hhbb/getPatent', {
         status:this.status
        }).success((res) => {
           this.tableData = res.data;
@@ -82,7 +80,7 @@ export default {
       });
     },
     finishSubmit(id){
-      this.$rqt.post('/union/finishRecruit', {
+      this.$rqt.post('/hhbb/finishPatent', {
         id:id
       }).success((res,xhr) => {
         if(res.error == 0){

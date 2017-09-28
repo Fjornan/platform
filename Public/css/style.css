@@ -313,6 +313,9 @@ fieldset{
     overflow: hidden;
     cursor: pointer;
 }
+.order-container{
+  min-height: 200px;
+}
 
 
 

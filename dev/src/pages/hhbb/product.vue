@@ -57,9 +57,9 @@ export default {
         kjsk: '跨境收款工具',
         tpps: '专业跨境产品拍图',
         kjfy: '专业跨境翻译服务',
-        yygj: '跨境电商运营工具',
-        hwpc: '海外评测资源',
-        vps: 'VPS网络支持',
+        // yygj: '跨境电商运营工具',
+        // hwpc: '海外评测资源',
+        // vps: 'VPS网络支持',
         ppjz: '品牌建站',
         yyzc: '跨境运营支持'
       },

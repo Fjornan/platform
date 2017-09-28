@@ -16,6 +16,7 @@
     <el-submenu index="2">
       <template slot="title"><i class="el-icon-upload"></i>海航必备</template>
         <el-menu-item index="/hhbb/order">客户订单</el-menu-item>
+        <el-menu-item index="/hhbb/patent">专利申请</el-menu-item>
         <el-menu-item index="/hhbb/product">产品设置</el-menu-item>
     </el-submenu>
     <el-submenu index="3">

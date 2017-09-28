@@ -46,7 +46,7 @@ export default {
         0: '未处理',
         1: '已处理'
       },
-      status: '-1',
+      status: '0',
       tableData: []
 
 

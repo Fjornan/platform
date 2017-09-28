@@ -21,7 +21,8 @@
 
   <el-table :data="tableData" stripe style="width: 100%;text-align:left">
     <el-table-column prop="country" label="国家名称"></el-table-column>
-    <el-table-column prop="user_id" label="用户id"></el-table-column>
+    <el-table-column prop="name" label="会员姓名"></el-table-column>
+    <el-table-column prop="phone" label="联系方式"></el-table-column>
     <el-table-column prop="create_time" label="提交时间"></el-table-column>
     <el-table-column label="操作" width="100">
       <template scope="scope">

@@ -7,6 +7,12 @@ const order =  (resolve) => {
   })
 }
 
+const patent =  (resolve) => {
+  require.ensure(['../pages/hhbb/patent'], () => {
+    resolve(require('../pages/hhbb/patent'))
+  })
+}
+
 const product =  (resolve) => {
   require.ensure(['../pages/hhbb/product'], () => {
     resolve(require('../pages/hhbb/product'))
@@ -26,6 +32,10 @@ export default {
     {
       path: 'order',
       component: order
+    },
+    {
+      path: 'patent',
+      component: patent
     },
     {
       path: 'product',
