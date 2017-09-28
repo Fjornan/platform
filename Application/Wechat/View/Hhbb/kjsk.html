@@ -46,7 +46,7 @@
           <li>点击鲸航跨境优惠注册链接，完成注册</li>
         </ol>
       </div>
-      <a href="" class="bottom-btn">
+      <a id="word_first" class="bottom-btn">
         注册 World First
       </a>
 
@@ -65,7 +65,7 @@
           <li>点击鲸航跨境优惠注册链接，完成注册</li>
         </ol>
       </div>
-      <a href="" class="bottom-btn">
+      <a id="ping_pong" class="bottom-btn">
         注册Ping Pong
       </a>
 
@@ -86,10 +86,42 @@
           <li>收款币种：美元、欧元、英镑、日元</li>
         </ol>
       </div>
-      <a href="" class="bottom-btn">
+      <a id="cdcard" class="bottom-btn">
         注册CD卡
       </a>
-    </section>
 
+    </section>
+<include file="Public/alert"/>
 </body>
 </html>
+
+<script type="text/javascript">
+console.log('<?php echo session("member")?>')
+$('#word_first').click(function(){
+  if('<?php echo session("member")?>' == 0){
+    $('#vipMsg').text('成为鲸航Vip用户才可操作哟');
+    $('#vipAlert').modal('toggle');
+  }else{
+    window.location.href="https://www.worldfirst.com/cn/?default_source=SA025"
+  }
+})
+
+$('#ping_pong').click(function(){
+  if('<?php echo session("member")?>' == 0){
+    $('#vipMsg').text('成为鲸航Vip用户才可操作哟');
+    $('#vipAlert').modal('toggle');
+  }else{
+    window.location.href="https://www.currenciesdirect.com/zh/online-sellers?afflno=A09094-29&assetid=0000108"
+  }
+})
+
+$('#cdcard').click(function(){
+  if('<?php echo session("member")?>' == 0){
+    $('#vipMsg').text('成为鲸航Vip用户才可操作哟');
+    $('#vipAlert').modal('toggle');
+  }else{
+    window.location.href="https://www.currenciesdirect.com/zh/online-sellers?afflno=A09094-29&assetid=0000108"
+  }
+})
+
+</script>

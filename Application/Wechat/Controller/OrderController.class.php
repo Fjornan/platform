@@ -18,6 +18,7 @@ class OrderController extends ComController {
             $data['product_sign'] = I('post.product_sign');
             $data['service_sign'] = I('post.service_sign');
             $data['price'] = I('post.price');
+            $data['note'] = I('post.note');
             $add_res = $db_order->add($data);
             if($add_res>0){
                 $error = 0;

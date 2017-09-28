@@ -35,14 +35,14 @@
       <div class="pd2222">
         <div class="pro-title">
           <h3>
-            <img class="pro-bar" src="__PUBLIC__/image/bar.png">英国VAT（申请+申报+英国地址费）
+            <img class="pro-bar" src="__PUBLIC__/image/bar.png">{$product[0]['name']}{$product[0]['sub_name']}
             <label class="am-checkbox">
-              <input type="checkbox" value="" data-am-ucheck>
+              <input type="checkbox" data-price="{$product[0]['price']}" value="{$product[0]['sign']}" data-am-ucheck>
             </label>
           </h3>
         </div>
         <div class="pro-price">
-          ￥6500元
+          ￥{$product[0]['price']}元
         </div>
         <ol class="pro-info">
           <li>单独注册 个人或者公司都可以</li>
@@ -58,24 +58,70 @@
       <div class="pd2222">
         <div class="pro-title">
           <h3>
-            <img class="pro-bar" src="__PUBLIC__/image/bar.png">德国VAT（申请+申报+德国地址费）
+            <img class="pro-bar" src="__PUBLIC__/image/bar.png">{$product[1]['name']}{$product[1]['sub_name']}
             <label class="am-checkbox">
-              <input type="checkbox" value="" data-am-ucheck>
+              <input type="checkbox" data-price="{$product[1]['price']}" value="{$product[1]['sign']}" data-am-ucheck>
             </label>
           </h3>
         </div>
         <div class="pro-price">
-          ￥8000元
+          ￥{$product[1]['price']}元
         </div>
         <ol class="pro-info">
           <li>单独注册 个人或者公司都可以</li>
           <li>包含一年单独申报费用</li>
         </ol>
       </div>
-      <a href="" class="bottom-btn">
+      <a id="submit" href="" class="bottom-btn">
         立即开通
       </a>
     </section>
-
+<include file="Public/alert"/>
 </body>
 </html>
+
+<script type="text/javascript">
+  $('#submit').click(function(){
+  
+
+  var product_sign=""; 
+  var price = 0;
+  $(":checkbox:checked").each(function(){ 
+    if(product_sign == ""){
+      product_sign += $(this).val();
+    }else{
+      product_sign += ','+$(this).val()
+    }
+    price += parseFloat(($(this).data('price')));
+  }) 
+  var d = {};
+  d.product_sign = product_sign;
+  d.price = price;
+  d.service_sign = 'vat';
+  if(d.product_sign == ''){
+    $('#alertMsg').text('请至少选择一个产品');
+    $('#myAlert').modal('toggle');
+    return false;
+  }
+
+  $.ajax({  
+    url: Api+'/order/confirm',  
+    data:d,
+    type:'post',   
+    success:function(data) {  
+      if(data.error == 0 ){  
+        console.log(data);
+        window.location.href = Api+"/wxpay/index?id="+data.data;
+      }else if(data.error == 202){
+        $('#vipMsg').text(data.msg);
+        $('#vipAlert').modal('toggle');
+      }
+      // $('#alertMsg').text(data.msg);
+      // $('#myAlert').modal('toggle');
+     },  
+     error:function(data) {  
+       console.log(data)
+     }  
+  }); 
+})
+</script>

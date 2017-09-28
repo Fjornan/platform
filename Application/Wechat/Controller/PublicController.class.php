@@ -8,4 +8,7 @@ class PublicController extends ComController {
     public function header(){
     	$this->display();
     }
+    public function alert(){
+    	$this->display();
+    }
 }

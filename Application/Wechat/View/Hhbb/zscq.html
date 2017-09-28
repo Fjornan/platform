@@ -37,7 +37,7 @@
           <h3>
             <img class="pro-bar" src="__PUBLIC__/image/bar.png">{$product[0]['name']}{$product[0]['sub_name']}
             <label class="am-checkbox">
-              <input type="checkbox" value="" data-am-ucheck>
+              <input type="checkbox" data-price="{$product[0]['price']}" value="{$product[0]['sign']}" data-am-ucheck>
             </label>
           </h3>
         </div>
@@ -49,7 +49,7 @@
           <h3>
             <img class="pro-bar" src="__PUBLIC__/image/bar.png">{$product[1]['name']}{$product[1]['sub_name']}
             <label class="am-checkbox">
-              <input type="checkbox" value="" data-am-ucheck>
+              <input type="checkbox" data-price="{$product[1]['price']}" value="{$product[1]['sign']}"  data-am-ucheck>
             </label>
           </h3>
         </div>
@@ -61,7 +61,7 @@
           <h3>
             <img class="pro-bar" src="__PUBLIC__/image/bar.png">{$product[2]['name']}{$product[2]['sub_name']}
             <label class="am-checkbox">
-              <input type="checkbox" value="" data-am-ucheck>
+              <input type="checkbox" data-price="{$product[2]['price']}" value="{$product[2]['sign']}"  data-am-ucheck>
             </label>
           </h3>
         </div>
@@ -73,7 +73,7 @@
           <h3>
             <img class="pro-bar" src="__PUBLIC__/image/bar.png">{$product[3]['name']}{$product[3]['sub_name']}
             <label class="am-checkbox">
-              <input type="checkbox" value="" data-am-ucheck>
+              <input type="checkbox" data-price="{$product[3]['price']}" value="{$product[3]['sign']}"  data-am-ucheck>
             </label>
           </h3>
         </div>
@@ -85,7 +85,7 @@
           <h3>
             <img class="pro-bar" src="__PUBLIC__/image/bar.png">{$product[4]['name']}{$product[4]['sub_name']}
             <label class="am-checkbox">
-              <input type="checkbox" value="" data-am-ucheck>
+              <input type="checkbox" data-price="{$product[4]['price']}" value="{$product[4]['sign']}"  data-am-ucheck>
             </label>
           </h3>
         </div>
@@ -94,25 +94,20 @@
         </div>
 
       </div>
-      <div class="cut-line-bold"></div>
-      <div class="pd2222">
-        <form class="am-form">
-          <fieldset>
-            <div class="am-form-group">
-              <label for="doc-ta-1">专利及项目申报（填写简单介绍／申报需求）</label>
-              <textarea class="" rows="5" id="doc-ta-1"></textarea>
-            </div>
-            <button type="button" class="am-btn am-btn-secondary am-btn-block am-btn-sm">提交申请</button>
-            
-          </fieldset>
-        </form>
-      </div>
+      <a id="submit" href="" class="bottom-btn">
+        立即开通
+      </a>
+
       <div class="cut-line-bold"></div>
       <div class="pd2222">
         <div class="pro-title">
           <h3>
-            <img class="pro-bar" src="__PUBLIC__/image/bar.png">专利申请
+            <img class="pro-bar" src="__PUBLIC__/image/bar.png">
+            专利及项目申报
+            <label class="am-checkbox">
+          </label>
           </h3>
+
         </div>
         <ol class="pro-info">
           <li>下单后，工作人员会与您联系</li>
@@ -121,11 +116,64 @@
           <li>一般商标从受理到正式下发证书时间周期为：6-10个月</li>
           <li>专利和项目申报，提交需求后，工作人员会与您联系</li>
         </ol>
+        <form class="am-form">
+          <fieldset>
+            <div class="am-form-group">
+              <label for="doc-ta-1">填写简单介绍／申报需求</label>
+              <textarea class="" rows="5" id="doc-ta-1"></textarea>
+            </div>
+            <button type="button" class="am-btn am-btn-secondary am-btn-block am-btn-sm">提交申请</button>
+          </fieldset>
+        </form>
       </div>
-      <a href="" class="bottom-btn">
-        立即开通
-      </a>
+      
     </section>
-
+<include file="Public/alert"/>
 </body>
 </html>
+
+<script type="text/javascript">
+  $('#submit').click(function(){
+  
+
+  var product_sign=""; 
+  var price = 0;
+  $(":checkbox:checked").each(function(){ 
+    if(product_sign == ""){
+      product_sign += $(this).val();
+    }else{
+      product_sign += ','+$(this).val()
+    }
+    price += parseFloat(($(this).data('price')));
+  }) 
+  var d = {};
+  d.product_sign = product_sign;
+  d.price = price;
+  d.service_sign = 'zscq';
+  if(d.product_sign == ''){
+    $('#alertMsg').text('请至少选择一个产品');
+    $('#myAlert').modal('toggle');
+    return false;
+  }
+
+  $.ajax({  
+    url: Api+'/order/confirm',// 跳转到 action  
+    data:d,
+    type:'post',   
+    success:function(data) {  
+      if(data.error == 0 ){  
+        console.log(data);
+        window.location.href = Api+"/wxpay/index?id="+data.data;
+      }else if(data.error == 202){
+        $('#vipMsg').text(data.msg);
+        $('#vipAlert').modal('toggle');
+      }
+      // $('#alertMsg').text(data.msg);
+      // $('#myAlert').modal('toggle');
+     },  
+     error:function(data) {  
+       console.log(data)
+     }  
+  }); 
+})
+</script>
