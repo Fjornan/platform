@@ -229,9 +229,10 @@ header{
 
 .banner{
   // border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  padding: 2px;
+  // border-bottom: 1px solid #ccc;
+  // padding: 2px;
 }
+
 .abstract{
   padding: 10px 10px 0px;
   margin: 0px 10px;
