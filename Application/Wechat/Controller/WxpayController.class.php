@@ -33,7 +33,7 @@ class WxpayController extends ComController {
         // Vendor('Weixinpay.Weixinpay');
         import('Vendor.Weixinpay.Weixinpay');
         // Vendor('Weixinpay.Weixinpay#class');
-        $wxpay=new Weixinpay();
+        $wxpay=new \Vendor\Weixinpay\Weixinpay();
         // 获取jssdk需要用到的数据
         $data=$wxpay->getParameters();
         // 将数据分配到前台页面
