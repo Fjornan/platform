@@ -698,8 +698,8 @@ select {
   width: 100%;
   // padding-left: 1rem;
   // padding-right: 1rem;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 1px;
+  padding-right: 1px;
   float: left;
   position: relative;
 }

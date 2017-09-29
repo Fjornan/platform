@@ -1,5 +1,5 @@
 <?php
-namespace Org\wxpay;
+namespace Wechat\wxpay;
 
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
