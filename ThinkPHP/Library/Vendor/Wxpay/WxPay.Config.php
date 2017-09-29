@@ -19,10 +19,10 @@ class WxPayConfig
 	 * 设置地址：https://pay.weixin.qq.com/index.php/account/api_cert
 	 * 
 	 */
-	const APPID = '';
-	const MCHID = '';
-	const KEY = '';
-	const NOTIFY_URL = "";
+	const APPID = 'wx205959c817c7f864';
+	const MCHID = '1488897962';
+	const KEY = '6E34F2C4978F3E90E70CADCD427D1E96';
+	const NOTIFY_URL = "da33bab21ed082590ad954080662092a";
 	
 	//=======【证书路径设置】=====================================
 	/**
