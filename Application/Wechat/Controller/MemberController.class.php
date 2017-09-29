@@ -43,7 +43,7 @@ class MemberController extends ComController {
             $add_res = $db_card->add($data);
             $update['id'] = $user_id;
             $update['is_member'] = 1;
-            $update['mameber_num'] = $card_id;
+            $update['member_num'] = $card_id;
             $update['name'] = $name;
             $update['phone'] = $phone;
             $update_res = $db_user->save($update);
