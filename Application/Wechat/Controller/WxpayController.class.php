@@ -1,6 +1,5 @@
 <?php
 namespace Wechat\Controller;
-import('Vendor.Weixinpay.Weixinpay');
 
 class WxpayController extends ComController {
     public function index(){
@@ -31,7 +30,7 @@ class WxpayController extends ComController {
         // 导入微信支付sdk
         // Vendor('Weixinpay.Weixinpay');
         
-        $wxpay=new Weixinpay();
+        $wxpay=new \Org\wxpay\Weixinpay;
         // 获取jssdk需要用到的数据
         $data=$wxpay->getParameters();
         // 将数据分配到前台页面
