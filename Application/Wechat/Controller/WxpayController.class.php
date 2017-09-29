@@ -1,6 +1,8 @@
 <?php
 namespace Wechat\Controller;
 
+
+
 class WxpayController extends ComController {
     public function index(){
         $condition['id'] = I('get.id');
@@ -26,19 +28,25 @@ class WxpayController extends ComController {
         // var_dump($data);
         $this->display();
     }
-
-    function wx_notify(){
-        Vendor('Wxpay.WxPay#Api');
-        $raw_xml = file_get_contents("php://input");
-        $notify = new \WxPayNotifyCallBack();
-        $notify->Handle(false);
-        $res = $notify->GetValues();
-        if($res['return_code'] ==="SUCCESS" && $res['return_msg'] ==="OK"){
-            libxml_disable_entity_loader(true);
-            $ret = json_decode(json_encode(simplexml_load_string($raw_xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
-            \Think\Log::write('微信APP支付成功订单号'.$ret['out_trade_no'], \Think\Log::DEBUG);
-            //在此处处理业务逻辑部分
-            echo "支付成功";
-        }
+    public function pay(){
+        // 导入微信支付sdk
+        Vendor('Weixinpay.Weixinpay');
+        $wxpay=new \Weixinpay();
+        // 获取jssdk需要用到的数据
+        $data=$wxpay->getParameters();
+        // 将数据分配到前台页面
+        $assign=array(
+            'data'=>json_encode($data)
+            );
+        $this->assign($assign);
+        $this->display();
     }
+    public function wexinpay_js(){
+        $out_trade_no=time();
+        // 组合url
+        $url=U('Wechat/Wxpay/pay',array('out_trade_no'=>$out_trade_no));
+        // 前往支付
+        redirect($url);
+    }
+    
 }
