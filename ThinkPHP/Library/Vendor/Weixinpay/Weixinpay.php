@@ -1,5 +1,5 @@
 <?php
-
+namespace Vendor\Weixinpay;
 
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
@@ -7,7 +7,6 @@ ini_set('display_errors', '1');
 // 定义时区
 ini_set('date.timezone','Asia/Shanghai');
 
-namespace Wechat\Controller;
 class Weixinpay {
     // 定义配置项
     private $config=array(
