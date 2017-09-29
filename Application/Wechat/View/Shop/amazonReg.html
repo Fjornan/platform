@@ -134,40 +134,5 @@
       </div>
       
     </section>
-
-<div class="am-modal am-modal-alert" tabindex="-1" id="myAlert">
-  <div class="am-modal-dialog">
-    <div class="am-modal-hd">提示</div>
-    <div class="am-modal-bd">
-      <span id="alertMsg">消息提示</span>
-    </div>
-    <div class="am-modal-footer">
-      <span class="am-modal-btn">确定</span>
-    </div>
-  </div>
-</div>
 </body>
 </html>
-<script type="text/javascript">
-$('#submit').click(function(){
-  $.ajax( {  
-    url: Api+'/shop/apiAmazonReg',// 跳转到 action  
-    data:{  
-         company:$('#company').val();
-    },  
-    type:'post',   
-    success:function(data) {  
-      if(data.error == 0 ){  
-        console.log(data);
-      }
-      $('#alertMsg').text(data.msg);
-      $('#myAlert').modal('toggle');
-     },  
-     error:function(data) {  
-       console.log(data)
-     }  
-  }); 
-})
-
-
-</script>
