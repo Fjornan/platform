@@ -44,11 +44,10 @@ class WxpayController extends ComController {
     public function paytest(){
         $out_trade_no=time();
         // 组合url
-        // $url=U('Wechat/wxpay/pay',array('out_trade_no'=>$out_trade_no));
+        $url=U('Wechat/wxpay/pay',array('out_trade_no'=>$out_trade_no));
         // 前往支付
-        // redirect($url);
-        // $this->redirect('wxpay/pay',array('out_trade_no'=>$out_trade_no));
-        $this->redirect('member/info');
+        redirect($url);
+        // $this->redirect('Wechat/Wxpay/pay',array('out_trade_no'=>$out_trade_no));
     }
     
 }
