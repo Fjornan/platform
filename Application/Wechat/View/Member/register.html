@@ -73,7 +73,7 @@ $('#submit').click(function(){
     success:function(data) {  
       if(data.error == 0 ){  
         console.log(data);
-        window.location.href= Api+"/memeber/index"
+        window.location.href= Api+"/member/index"
       }else{
         $('#alertMsg').text(data.msg);
         $('#myAlert').modal('toggle');
