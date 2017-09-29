@@ -47,7 +47,8 @@ class WxpayController extends ComController {
         // $url=U('Wechat/wxpay/pay',array('out_trade_no'=>$out_trade_no));
         // 前往支付
         // redirect($url);
-        $this->redirect('wxpay/pay',array('out_trade_no'=>$out_trade_no));
+        // $this->redirect('wxpay/pay',array('out_trade_no'=>$out_trade_no));
+        $this->redirect('member/info');
     }
     
 }
