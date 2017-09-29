@@ -1,7 +1,7 @@
 <?php
 namespace Wechat\Controller;
 
-import('Org.Weixinpay.Weixinpay');
+import('Org.wxpay.Weixinpay');
 
 
 
