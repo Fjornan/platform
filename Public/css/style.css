@@ -310,6 +310,14 @@ header{
   position: fixed;
   bottom: 0px;
 }
+.bottom-btn a{
+  display: inline-block;
+  width: 49%;
+  color: #fff
+}
+.bottom-btn a:first-child{
+  border-right: #fff solid 1px;
+}
 .vip-button{
       display: table-cell !important;
     padding: 0 5px;

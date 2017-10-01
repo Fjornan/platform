@@ -59,7 +59,7 @@
               <label for="com_property">您所在公司的性质</label>
               <select id="com_property">
                 <option value="-1">请选择</option>
-                <option value="自由品牌">自有品牌</option>
+                <option value="自有品牌">自有品牌</option>
                 <option value="自有工厂">自有工厂</option>
                 <option value="经销商">经销商</option>
                 <option value="个人">个人</option>
@@ -83,7 +83,7 @@
             
             <div class="am-form-group">
               <label for="purpose_site">您意向开通的站点</label>
-              <select id="putpose_site">
+              <select id="purpose_site">
                 <option value="-1">请选择</option>
                 <option value="北美站">北美站</option>
                 <option value="欧洲站">欧洲站</option>
@@ -132,7 +132,61 @@
           </fieldset>
         </form>
       </div>
-      
+      <div class="tc">
+        <img style="width: 60%;" src="__PUBLIC__/image/logo.png">
+      </div>
     </section>
+<include file="Public/alert"/>
 </body>
 </html>
+<script type="text/javascript">
+$('#submit').click(function(){
+  var d = {};
+  d.company = $('#company').val();
+  d.username = $('#username').val();
+  d.phone = $('#phone').val();
+  d.email = $('#email').val();
+  d.province = $('#province').val();
+  d.product = $('#product').val();
+  d.com_property = $('#com_property').val();
+  d.year_sell = $('#year_sell').val();
+  d.has_shop = $('#has_shop').val();
+  d.purpose_site = $('#purpose_site').val();
+  d.web_site = $('#web_site').val();
+
+  var str=""; 
+  $(":checkbox:checked").each(function(){ 
+    if(str == ""){
+      str += $(this).val();
+    }else{
+      str += ','+$(this).val()
+    }
+  }) 
+
+  d.interet = str;
+  console.log(d);
+
+  if(d.company == '' || d.username == '' || d.phone == '' || d.product == '' || d.email == '' || d.province == ''){
+    $('#alertMsg').text('请填写带 * 信息');
+    $('#myAlert').modal('toggle');
+    return false;
+  }
+  $.ajax({  
+    url: Api+'/shop/submitAmazonReg',// 跳转到 action  
+    data:d,
+    type:'post',   
+    success:function(data) {  
+      if(data.error == 0 ){  
+        console.log(data);
+      }
+      $('#alertMsg').text(data.msg);
+      $('#myAlert').modal('toggle');
+     },  
+     error:function(data) {  
+       console.log(data)
+     }  
+  }); 
+})
+
+
+</script>
