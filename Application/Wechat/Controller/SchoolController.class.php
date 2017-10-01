@@ -9,6 +9,9 @@ class SchoolController extends ComController {
     public function amazon(){
     	$this->display();
     }
+    public function amazonVideo(){
+        $this->display();
+    }
     public function lazada(){
     	$this->display();
     }
