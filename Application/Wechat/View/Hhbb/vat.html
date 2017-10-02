@@ -118,7 +118,7 @@
     success:function(data) {  
       if(data.error == 0 ){  
         console.log(data);
-        window.location.href = Api+"/wxpay/index?id="+data.data;
+        window.location.href = Api+"/Wxpay/index?id="+data.data;
       }else if(data.error == 202){
         $('#vipMsg').text(data.msg);
         $('#vipAlert').modal('toggle');
