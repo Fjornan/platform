@@ -165,7 +165,7 @@ class Weixinpay {
             $out_trade_no=I('get.id',1,'intval');
             // 返回的url
             // $redirect_uri=U('Api/Weixinpay/pay','','',true);
-            $redirect_uri=U('Wechat/Wxpay/pay','','',true);
+            $redirect_uri=U('Wechat/Wxpay','','',true);
             $redirect_uri=urlencode($redirect_uri);
             $url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$config['APPID'].'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_base&state='.$out_trade_no.'#wechat_redirect';
             redirect($url);
