@@ -19,7 +19,7 @@ class SetuserController extends Controller{
 		$arr = json_decode($json,true);  
 		$token = $arr['access_token'];  
 		$openid = $arr['openid'];
-		$redirect=I('get.state',0,'intval');
+		$redirect=I('get.state');
 		if($openid){
 			//查询数据库中的用户记录
 			$db_user = M('user');
@@ -37,6 +37,7 @@ class SetuserController extends Controller{
 			session('id',$id);
 			session('openid',$openid);
 			session('member',$member);
+			echo $redirect;
 			redirect($redirect);
 			//拿到token后就可以获取用户基本信息了  
 			// $url = "https://api.weixin.qq.com/sns/userinfo?access_token=$token&openid=$openid ";  
