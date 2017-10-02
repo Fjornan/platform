@@ -2,30 +2,33 @@
 <div class="p2222">
   <div class="p2020 m0020 bor-bottom pos-re">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/recruit' }">岗位列表</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/shop/amazon' }">亚马逊全球开店</el-breadcrumb-item>
     </el-breadcrumb>
-    <div class="bread-btn">
-      <router-link :to="{path: '/recruit/add'}" >
+    <!-- <div class="bread-btn">
+      <router-link :to="{path: '/user/add'}" >
       <el-button icon="plus" type="primary" size="small">添加</el-button>
       </router-link>
-    </div>
+    </div> -->
   </div>
 
-  <el-table :data="recruit" stripe style="width: 100%;text-align:left">
-    <el-table-column prop="name" label="岗位名称" width="150"></el-table-column>
-    <el-table-column prop="require" label="岗位需求"></el-table-column>
-    <el-table-column prop="treatment" label="岗位待遇"></el-table-column>
-    <el-table-column prop="display" label="官网显示" width="100">
+  <el-select class="m0020" style="width:200px" v-model="status" size="small" placeholder="请选择分类" @change="handleChangeGetStatus">
+    <el-option
+      v-for="(item,key) in orderStatus"
+      :label="item"
+      :value="key">
+    </el-option>
+  </el-select>
+
+  <el-table :data="tableData" stripe style="width: 100%;text-align:left">
+    <el-table-column prop="name" label="姓名"></el-table-column>
+    <el-table-column prop="phone" label="联系电话"></el-table-column>
+    <el-table-column prop="job" label="意向岗位"></el-table-column>
+    <el-table-column prop="introduce" label="自我推荐介绍"></el-table-column>
+    <el-table-column prop="create_time" label="提交时间"></el-table-column>
+    <el-table-column label="操作" width="100">
       <template scope="scope">
-        <span>{{ displayType[scope.row.display] }}</span>
-      </template>
-    </el-table-column>
-    <el-table-column label="操作" width="180">
-      <template scope="scope">
-        <router-link :to="{path: '/recruit/edit/'+scope.row.id}">
-          <el-button size="small">编辑</el-button>
-        </router-link>
-        <el-button type="danger" size="small" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        <el-button v-if="scope.row.status == 0" type="danger" size="small" @click="handleFinish(scope.$index, scope.row)">确认处理</el-button>
+        <el-button v-else type="primary" size="small">已完成</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -36,46 +39,53 @@
 export default {
   data() {
     return {
-      displayType: {
-        0: '不显示',
-        1: '显示'
+      orderStatus: {
+        '-1': '全部',
+        0: '未处理',
+        1: '已处理'
       },
-      recruit: []
+      status: '0',
+      tableData: []
+
 
     }
   },
   computed: {},
   mounted() {
-    this.getRecruit()
+    this.getData()
   },
   attached() {},
   methods: {
-    getRecruit() {
+    getData() {
       /* eslint-disable */
-       this.$rqt.post('/recruit/get_list', {
-         
+       this.$rqt.post('/union/getApply', {
+        status:this.status
        }).success((res) => {
-          this.recruit = res.data.list;
+          this.tableData = res.data;
       })
     },
-    handleDelete(index,row){
+    handleChangeGetStatus(res){
+      this.status = res;
+      this.getData();
+    },
+    handleFinish(index,row){
       var that = this;
-      this.$confirm('此操作将永久删除该岗位, 是否继续?', '提示', {
+      this.$confirm('确认已经处理完该订单?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        that.deleteSubmit(row.id)
+        that.finishSubmit(row.id)
       }).catch((res) => {
         console.log(res)   
       });
     },
-    deleteSubmit(id){
-      this.$rqt.post('/recruit/delete', {
+    finishSubmit(id){
+      this.$rqt.post('/union/finishApply', {
         id:id
       }).success((res,xhr) => {
-        if(res.code){
-          this.getRecruit();
+        if(res.error == 0){
+          this.getData();
           this.$message({
               message: res.msg,
               type: 'success'

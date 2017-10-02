@@ -18,6 +18,7 @@
     <el-table-column prop="email" label="邮箱"></el-table-column>
     <el-table-column prop="company" label="公司"></el-table-column>
     <el-table-column prop="product" label="主营产品"></el-table-column>
+    <el-table-column prop="create_time" label="注册时间"></el-table-column>
 <!--     <el-table-column prop="display" label="" width="100">
       <template scope="scope">
         <span>{{ displayType[scope.row.display] }}</span>

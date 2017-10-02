@@ -27,8 +27,6 @@ class SchoolController extends ComController {
     public function applyAmazonnew(){
         if(session('id') == null){
             $error = 201;
-        }else if(session('member') == 0){
-            $error = 202;
         }else{
             $db = M('amazon_new');
             $data['user_id'] = session('id');

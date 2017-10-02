@@ -7,6 +7,12 @@ const amazon =  (resolve) => {
   })
 }
 
+const amazonDetail =  (resolve) => {
+  require.ensure(['../pages/shop/amazon-detail'], () => {
+    resolve(require('../pages/shop/amazon-detail'))
+  })
+}
+
 export default {
   path: '/shop',
   component: Frame,
@@ -15,5 +21,9 @@ export default {
       path: 'amazon',
       component: amazon
     },
+    {
+      path: 'amazonDetail/:id',
+      component:amazonDetail
+    }
   ]
 }
