@@ -159,11 +159,27 @@ class Weixinpay {
     public function getParameters(){
         // 获取配置项
         $config=$this->config;
-
+        // 如果没有get参数没有code；则重定向去获取openid；
+        if (!isset($_GET['code'])) {
+            // 获取订单号
+            $out_trade_no=I('get.id',1,'intval');
+            // 返回的url
+            // $redirect_uri=U('Api/Weixinpay/pay','','',true);
+            $redirect_uri=U('Wechat/Wxpay','','',true);
+            $redirect_uri=urlencode($redirect_uri);
+            $url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$config['APPID'].'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_base&state='.$out_trade_no.'#wechat_redirect';
+            redirect($url);
+        }else{
+            // 如果有code参数；则表示获取到openid
+            $code=I('get.code');
             // 取出订单号
-            $out_trade_no=I('get.id',0,'intval');
-
-            $openid=session('openid');
+            $out_trade_no=I('get.state',0,'intval');
+            // 组合获取prepay_id的url
+            $url='https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$config['APPID'].'&secret='.$config['APPSECRET'].'&code='.$code.'&grant_type=authorization_code';
+            // curl获取prepay_id
+            $result=$this->curl_get_contents($url);
+            $result=json_decode($result,true);
+            $openid=$result['openid'];
             // 订单数据  请根据订单号out_trade_no 从数据库中查出实际的body、total_fee、out_trade_no、product_id
             $order=array(
                 'body'=>'test',// 商品描述（需要根据自己的业务修改）
@@ -188,7 +204,7 @@ class Weixinpay {
             // 生成签名
             $data['paySign']=$this->makeSign($data);
             return $data;
-        
+        }
     }
 
     /**
