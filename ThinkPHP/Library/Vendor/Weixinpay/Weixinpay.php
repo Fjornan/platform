@@ -161,7 +161,7 @@ class Weixinpay {
         $config=$this->config;
 
             // 取出订单号
-            $out_trade_no=I('get.id',0,'intval');
+            $out_trade_no = date("YmdHis").I('get.id',0,'intval');
 
             $openid=session('openid');
             // 订单数据  请根据订单号out_trade_no 从数据库中查出实际的body、total_fee、out_trade_no、product_id
