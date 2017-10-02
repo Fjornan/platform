@@ -167,7 +167,7 @@ class Weixinpay {
             // 订单数据  请根据订单号out_trade_no 从数据库中查出实际的body、total_fee、out_trade_no、product_id
             $order=array(
                 'body'=>'鲸航跨境产品',// 商品描述（需要根据自己的业务修改）
-                'total_fee'=>(int)$order['price']*100,// 订单金额  以(分)为单位（需要根据自己的业务修改）
+                'total_fee'=>(int)((float)$order['price']*100),// 订单金额  以(分)为单位（需要根据自己的业务修改）
                 'out_trade_no'=>$out_trade_no,// 订单号（需要根据自己的业务修改）
                 'product_id'=>'1',// 商品id（需要根据自己的业务修改）
                 'trade_type'=>'JSAPI',// JSAPI公众号支付
