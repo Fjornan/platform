@@ -20,6 +20,16 @@ class WxpayController extends ComController {
             $data = M('product')->where($search)->find();
             array_push($pro_arr, $data);
         }
+
+        Vendor('Weixinpay.Weixinpay');
+        $wxpay=new \Weixinpay;
+        // 获取jssdk需要用到的数据
+        $data=$wxpay->getParameters();
+        // 将数据分配到前台页面
+        $assign=array(
+            'data'=>json_encode($data)
+        );
+        $this->assign($assign);
         $this->assign('detail',$pro_arr);
         $this->assign('price',$getData['price']); 
         $this->assign('status',$status);
