@@ -10,7 +10,8 @@ class ComController extends Controller{
 		// session('member',1);
 		// session('openid','opkc-wsEIvhQ-WRildlGbaDSODn0');
 		if(session('id') == null || session('openid') == null){
-			$this->getCode();
+			// $this->getCode();
+			$this->getUserInfo();
 		}else{
 
 		}
