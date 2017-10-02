@@ -75,9 +75,11 @@ function onBridgeReady(){
          document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
          document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
      }
- }else{
-      onBridgeReady();
  }
+
+ $('submit').click(function(){
+  onBridgeReady();
+ })
 
  
 </script>
