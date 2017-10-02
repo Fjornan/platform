@@ -21,10 +21,11 @@ class WxpayController extends ComController {
             array_push($pro_arr, $data);
         }
 
+        $order =  $getData;
         Vendor('Weixinpay.Weixinpay');
         $wxpay=new \Weixinpay;
         // 获取jssdk需要用到的数据
-        $data=$wxpay->getParameters();
+        $data=$wxpay->getParameters($order);
         // 将数据分配到前台页面
         $assign=array(
             'data'=>json_encode($data)
