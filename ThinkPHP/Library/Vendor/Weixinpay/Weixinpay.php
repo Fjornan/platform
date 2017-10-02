@@ -162,7 +162,7 @@ class Weixinpay {
         // 如果没有get参数没有code；则重定向去获取openid；
         if (!isset($_GET['code'])) {
             // 获取订单号
-            $out_trade_no=I('get.out_trade_no',1,'intval');
+            $out_trade_no=I('get.id',1,'intval');
             // 返回的url
             // $redirect_uri=U('Api/Weixinpay/pay','','',true);
             $redirect_uri=U('Wechat/Wxpay/pay','','',true);
