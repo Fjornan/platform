@@ -6,12 +6,13 @@ use Think\Controller;
 
 class ComController extends Controller{
 	public function _initialize(){
-		// session('id',1);
-		// session('member',1);
-		// session('openid','opkc-wsEIvhQ-WRildlGbaDSODn0');
+		session('id',1);
+		session('member',1);
+		session('openid','opkc-wsEIvhQ-WRildlGbaDSODn0');
+		$state =  'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 		if(session('id') == null || session('openid') == null){
-			// $this->getCode();
-			$this->getUserInfo();
+			$this->getCode($state);
+			// $this->getUserInfo();
 		}else{
 
 		}
@@ -57,14 +58,14 @@ class ComController extends Controller{
 
 		
 	}
-	public function getCode(){
+	public function getCode($state){
         // 获取配置项
         $config=C('WEIXINPAY_CONFIG');
         // 如果没有get参数没有code；则重定向去获取openid；
         
-        $redirect_uri=U('Wechat/Com/setUser','','',true);
+        $redirect_uri=U('Wechat/Setuser/index','','',true);
         $redirect_uri=urlencode($redirect_uri);
-        $url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$config['APPID'].'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
+        $url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$config['APPID'].'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_base&state='.$state.'#wechat_redirect';
         redirect($url);
 
     }
