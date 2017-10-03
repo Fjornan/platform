@@ -22,7 +22,7 @@ class WxnotifyController extends Controller{
 	            
 	            //向card表中插入数据
 	            $db_card = M('card');
-	            $card_id = 10010000 + (int)$user_id;
+	            $card_id = 10010000 + (int)$id;
 	            $data['user_id'] = $id;
 	            $data['number'] = $card_id;
 	            $add_res = $db_card->add($data);
