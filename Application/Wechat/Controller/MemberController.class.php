@@ -4,6 +4,9 @@ namespace Wechat\Controller;
 class MemberController extends ComController {
 	//我的鲸卡
     public function index(){
+        $id = session('id');
+        $user_info = M('user')->where('id='.$id)->find();
+        session('member',$user_info['is_member']);
     	if(session('member') == 1){
     		$this->redirect('member/info');
     	}else{
@@ -14,7 +17,17 @@ class MemberController extends ComController {
     }
     //申领鲸卡
     public function register(){
-    	
+    	$order['user_id'] =  session('id');
+        $order['price'] = 0.01;
+        Vendor('Weixinpay.Weixinpay');
+        $wxpay=new \Weixinpay;
+        // 获取jssdk需要用到的数据
+        $data=$wxpay->getParameters($order);
+        // 将数据分配到前台页面
+        $assign=array(
+            'data'=>json_encode($data)
+        );
+        $this->assign($assign);
     	$this->display();
     }
     public function info(){
@@ -31,23 +44,23 @@ class MemberController extends ComController {
             $msg = '已经是会员，无需再开通鲸航Vip卡';
         }else{
             $db_user = M('user');
-            $db_card = M('card');
+            // $db_card = M('card');
             $user_id = session('id');
 
             $name = I('post.name');
             $phone = I('post.phone');
             
-            $card_id = 10010000 + (int)$user_id;
-            $data['user_id'] = $user_id;
-            $data['number'] = $card_id;
-            $add_res = $db_card->add($data);
+            // $card_id = 10010000 + (int)$user_id;
+            // $data['user_id'] = $user_id;
+            // $data['number'] = $card_id;
+            // $add_res = $db_card->add($data);
             $update['id'] = $user_id;
-            $update['is_member'] = 1;
-            $update['member_num'] = $card_id;
+            // $update['is_member'] = 1;
+            // $update['member_num'] = $card_id;
             $update['name'] = $name;
             $update['phone'] = $phone;
             $update_res = $db_user->save($update);
-            if($add_res>0 && $update_res>0){
+            if($update_res>0){
                 $error = 0;
                 $msg = '申请成功';
                 session('member',1);
