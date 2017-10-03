@@ -41,7 +41,7 @@ class MemberController extends ComController {
             $error = 201;
         }else if(session('member') != 0){
             $error = 1;
-            $msg = $session('member');
+            $msg = '已经是会员，无需再开通鲸航Vip卡';
         }else{
             $db_user = M('user');
             // $db_card = M('card');
@@ -63,7 +63,7 @@ class MemberController extends ComController {
             if($update_res>0){
                 $error = 0;
                 $msg = '申请成功';
-                session('member',1);
+                // session('member',1);
             }else{
                 $msg = 1;
                 $msg = '提交失败，请稍后再试';
