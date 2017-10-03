@@ -19,6 +19,7 @@ class MemberController extends ComController {
     public function register(){
     	$order['user_id'] =  session('id');
         $order['price'] = 0.01;
+        $order['service_sign'] = 'vip';
         Vendor('Weixinpay.Weixinpay');
         $wxpay=new \Weixinpay;
         // 获取jssdk需要用到的数据
