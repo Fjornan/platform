@@ -31,10 +31,11 @@
     <el-table-column prop="name" label="会员姓名" width="100"></el-table-column>
     <el-table-column prop="product" label="购买产品"></el-table-column>
     <el-table-column prop="price" label="总价(元)" width="100"></el-table-column>
-    <el-table-column v-if="type == 'upc'" prop="note" label="个数" width="100"></el-table-column>
-    <el-table-column prop="phone" label="联系方式" width="120"></el-table-column>
+    <el-table-column v-if="type == 'upc'" prop="amount" label="个数" width="80"></el-table-column>
+    <el-table-column prop="phone" label="联系方式" width="130"></el-table-column>
+<!--     <el-table-column prop="note" label="备注" width="100"></el-table-column> -->
     <el-table-column v-if="type == 'upc'" prop="email" label="邮箱" width="120"></el-table-column>
-    <el-table-column prop="create_time" label="提交时间" width="120"></el-table-column>
+    <el-table-column prop="create_time" label="下单时间" width="120"></el-table-column>
     <el-table-column label="操作" width="100">
       <template scope="scope">
         <el-button v-if="scope.row.status == 0" type="danger" size="small" @click="handleFinish(scope.$index, scope.row)">确认处理</el-button>

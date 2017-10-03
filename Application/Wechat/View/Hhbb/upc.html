@@ -95,7 +95,7 @@ $('#submit').click(function(){
   d.product_sign = 'upc_1';
   d.price = amount*price;
   d.service_sign = 'upc';
-  d.note = amount+'个';
+  d.amount = amount+'个';
   console.log(d);
   $.ajax({  
     url: Api+'/order/confirm',  

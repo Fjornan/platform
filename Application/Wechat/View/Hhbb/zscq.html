@@ -92,7 +92,16 @@
         <div class="pro-price">
           ￥{$product[4]['price']}元
         </div>
-
+        <?php if(session('member') == 0){?>
+        <form class="am-form">
+          <fieldset>
+            <div class="am-form-group">
+              <label for="doc-ipt-email-1">联系方式 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="phone" placeholder="请填写手机号码">
+            </div>
+          </fieldset>
+        </form>
+        <?php }?>
       </div>
       <div class="bottom-btn">
         <a href="tel:15267038084" ><i class="fa fa-phone-square fa-lg"></i> 详情咨询</a>
@@ -155,11 +164,21 @@
   var d = {};
   d.product_sign = product_sign;
   d.price = price;
+  d.note = $('#phone').val();
   d.service_sign = 'zscq';
+
   if(d.product_sign == ''){
     $('#alertMsg').text('请至少选择一个产品');
     $('#myAlert').modal('toggle');
     return false;
+  }
+  if("<?=session('member')?>" == 0){
+    d.type = 2;
+    if(d.note == ''){
+      $('#alertMsg').text('请填写您的联系方式');
+      $('#myAlert').modal('toggle');
+      return false;
+    }
   }
 
   $.ajax({  

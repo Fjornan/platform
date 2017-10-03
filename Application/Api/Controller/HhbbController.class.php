@@ -126,10 +126,15 @@ class HhbbController extends ComController {
             $db_pro = M('product');
             $getData = $db_order->where($condition)->order('id desc')->limit($offset,$page)->select();
             for($i=0;$i<count($getData);$i++){
-                $userinfo = getUserInfo($getData[$i]['user_id']);
-                $getData[$i]['name'] = $userinfo['name'];
-                $getData[$i]['phone'] = $userinfo['phone'];
-                $getData[$i]['email'] = $userinfo['email'];
+                if($getData[$i]['type'] == 2){
+                    $getData[$i]['phone'] = $getData[$i]['note'];
+                }else{
+                    $userinfo = getUserInfo($getData[$i]['user_id']);
+                    $getData[$i]['name'] = $userinfo['name'];
+                    $getData[$i]['phone'] = $userinfo['phone'];
+                    $getData[$i]['email'] = $userinfo['email'];
+                }
+                
 
                 $pro_list = explode(",", $getData[$i]['product_sign']);
                 $str = '';

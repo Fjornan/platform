@@ -101,6 +101,16 @@
           <h4 class="pd2222">> 不适合追求短时间内迅速成为“大卖”的土豪卖家</h4>
         </div>
       </div>
+      <?php if(session('member') == 0){?>
+        <form class="am-form">
+          <fieldset>
+            <div class="am-form-group">
+              <label for="doc-ipt-email-1">联系方式 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="phone" placeholder="请填写手机号码">
+            </div>
+          </fieldset>
+        </form>
+        <?php }?>
       <a id="submit" class="bottom-btn">
         立即开通
       </a>
@@ -110,9 +120,19 @@
 </html>
 <script type="text/javascript">
   $('#submit').click(function(){
+    var d = {};
+    d.phone = $('#phone').val();
+    if("<?=session('member')?>" == 0){
+      d.type = 2;
+      if(d.phone == ''){
+        $('#alertMsg').text('请填写您的联系方式');
+        $('#myAlert').modal('toggle');
+        return false;
+      }
+    }
   $.ajax({  
     url: Api+'/school/applyAmazonnew',// 跳转到 action  
-    data:{},
+    data:d,
     type:'post',   
     success:function(data) {  
       if(data.error == 0 ){  
