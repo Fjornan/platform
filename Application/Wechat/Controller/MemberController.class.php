@@ -60,14 +60,10 @@ class MemberController extends ComController {
             $update['name'] = $name;
             $update['phone'] = $phone;
             $update_res = $db_user->save($update);
-            if($update_res>0){
-                $error = 0;
-                $msg = '申请成功';
+
+            $error = 0;
                 // session('member',1);
-            }else{
-                $msg = 1;
-                $msg = '提交失败，请稍后再试';
-            }
+           
         }
         $result = return_json($error,$msg,$res);
         $this->ajaxReturn($result);
