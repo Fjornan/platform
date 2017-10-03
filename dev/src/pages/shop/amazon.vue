@@ -20,10 +20,14 @@
   </el-select>
 
   <el-table :data="tableData" stripe style="width: 100%;text-align:left">
-    <el-table-column prop="name" label="姓名"></el-table-column>
-    <el-table-column prop="phone" label="联系电话"></el-table-column>
-    <el-table-column prop="job" label="意向岗位"></el-table-column>
-    <el-table-column prop="introduce" label="自我推荐介绍"></el-table-column>
+    <el-table-column prop="company" label="公司名称"></el-table-column>
+    <el-table-column prop="username" label="联系人姓名"></el-table-column>
+    <el-table-column prop="phone" label="联系人电话"></el-table-column>
+    <el-table-column prop="email" label="联系人邮箱"></el-table-column>
+    <el-table-column prop="province" label="省份"></el-table-column>
+    <el-table-column prop="product" label="主营产品"></el-table-column>
+    <!-- <el-table-column prop="com_property" label="公司性质"></el-table-column>
+    <el-table-column prop="year_sell" label="年销售额"></el-table-column> -->
     <el-table-column prop="create_time" label="提交时间"></el-table-column>
     <el-table-column label="操作" width="100">
       <template scope="scope">
@@ -58,7 +62,7 @@ export default {
   methods: {
     getData() {
       /* eslint-disable */
-       this.$rqt.post('/union/getApply', {
+       this.$rqt.post('/shop/getAmazonApply', {
         status:this.status
        }).success((res) => {
           this.tableData = res.data;
@@ -81,7 +85,7 @@ export default {
       });
     },
     finishSubmit(id){
-      this.$rqt.post('/union/finishApply', {
+      this.$rqt.post('/shop/finishAmazonApply', {
         id:id
       }).success((res,xhr) => {
         if(res.error == 0){

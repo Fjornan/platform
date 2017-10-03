@@ -36,7 +36,7 @@
     <el-submenu index="5">
       <template slot="title"><i class="el-icon-picture"></i>鲸航学院</template>
         <el-menu-item index="/school/amaqa">亚马逊答疑</el-menu-item>
-        <el-menu-item index="/school/amanewapply">AMZ新手营报名</el-menu-item>
+        <el-menu-item index="/school/amanewapply">AMZ开店指导</el-menu-item>
     </el-submenu>
   </el-menu>
 </template>
