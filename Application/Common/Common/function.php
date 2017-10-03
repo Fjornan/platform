@@ -18,7 +18,7 @@ function statusMsg($error){
 			$msg = '登录失效，请关闭公众号重新进入';
 			break;
 		case 202:
-			$msg = '成为鲸航Vip用户才可操作哟';
+			$msg = '鲸航VIP专享资源，请先注册';
 			break;
 		default:
 			$msg = '系统繁忙，请稍后再试';
