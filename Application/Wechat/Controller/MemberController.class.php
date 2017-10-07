@@ -18,7 +18,7 @@ class MemberController extends ComController {
     //申领鲸卡
     public function register(){
     	$order['user_id'] =  session('id');
-        $order['price'] = 0.01;
+        $order['price'] = 298;
         $order['service_sign'] = 'vip';
         Vendor('Weixinpay.Weixinpay');
         $wxpay=new \Weixinpay;
