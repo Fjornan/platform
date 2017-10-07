@@ -27,7 +27,25 @@
         <p>记录你的跨境电商航行里程</p>
       </div>
       <div class="pd2222 order-container">
+        <?php if(count($list) == 0){?>
         <p class="tc">暂无记录</p>
+        <?php }else{?>
+          <ul class="order-list">
+            <?php for($i=0;$i<count($list);$i++){?>
+            <li class="pd2020">
+              <p>
+                <?=$list[$i]['create_time']?>
+              </p>
+              <div class="flex-box">
+                <span class="flex-1"><?=$list[$i]['product']?></span>
+                <span class="default-color">￥ <?=$list[$i]['price']?></span>
+              </div>
+              
+              
+            </li>
+            <?php }?>
+          </ul>
+        <?php }?>
       </div>
       <div class="cut-line-bold"></div>
       <div class="tc">

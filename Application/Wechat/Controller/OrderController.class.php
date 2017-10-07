@@ -4,7 +4,33 @@ namespace Wechat\Controller;
 class OrderController extends ComController {
 	//航海里程
     public function index(){
+        $condition['user_id'] = session('id');
+        $condition['del'] = 0;
+        $condition['status'] = 1;
+
+        $db_pro = M('product');
+        $db_order = M('order');
+        $getData = $db_order->where($condition)->select();
+        for($i=0;$i<count($getData);$i++){
+            $pro_list = explode(",", $getData[$i]['product_sign']);
+            $str = '';
+            for($j=0;$j<count($pro_list);$j++){
+                $search['sign'] = $pro_list[$j];
+                $proinfo = $db_pro->where($search)->find();
+                if($str == ''){
+                    $str =$str.$proinfo['name'].$proinfo['sub_name'];
+                }else{
+                    $str =$str.','.$proinfo['name'].$proinfo['sub_name'];
+                }
+            }
+            $getData[$i]['product'] = $str;
+        }
+        $this->assign('list',$getData);
         $this->display();
+    }
+    public function getList(){
+        
+
     }
     public function confirm(){
     	if(session('id') == null){

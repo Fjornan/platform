@@ -272,6 +272,9 @@ header{
 .jhkj-contain{
   padding-bottom:49px; 
 }
+.default-color{
+  color: #00a2ff
+}
 .pro-info{
   padding: 10px 30px;
   font-size: 12px;
@@ -343,7 +346,18 @@ header{
   line-height: 1.5;
   font-size: 12px;
 }
-
+.order-list{
+  line-height: 1.3
+}
+.order-list li{
+  border-bottom: 1px solid #eee
+}
+.order-list p{
+  color: #888;
+  font-size: 12px;
+  padding: 0px;
+  margin: 0px;
+}
 
 
 
