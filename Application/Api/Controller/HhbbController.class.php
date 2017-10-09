@@ -164,7 +164,7 @@ class HhbbController extends ComController {
             $id = I('post.id');
             $db = M('order');
             $condition['id'] = $id;
-            $res = $db->where($condition)->setField('status',1);
+            $res = $db->where($condition)->setField('status',2);
             $error = 0;
         }
         $result = return_json($error,$msg,$res);

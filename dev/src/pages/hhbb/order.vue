@@ -38,8 +38,9 @@
     <el-table-column prop="create_time" label="下单时间" width="120"></el-table-column>
     <el-table-column label="操作" width="100">
       <template scope="scope">
-        <el-button v-if="scope.row.status == 0" type="danger" size="small" @click="handleFinish(scope.$index, scope.row)">确认处理</el-button>
-        <el-button v-else type="primary" size="small">已完成</el-button>
+        <el-button v-if="scope.row.status == 1" type="danger" size="small" @click="handleFinish(scope.$index, scope.row)">确认处理</el-button>
+        <el-button v-if="scope.row.status == 0" type="warning" size="small">待支付</el-button>
+        <el-button v-if="scope.row.status == 2" size="small">已完成</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -67,11 +68,12 @@ export default {
 
       orderStatus: {
         '-1': '全部',
-        0: '未处理',
-        1: '已处理'
+        0: '待支付',
+        1: '等待处理',
+        2: '已处理'
       },
       type: 'gszc',
-      status: '0',
+      status: '1',
       tableData: []
 
 
