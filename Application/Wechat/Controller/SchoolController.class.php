@@ -62,7 +62,7 @@ class SchoolController extends ComController {
             $add_res = $db->add($data);
             if($add_res>0){
                 $error = 0;
-                $msg = '提交成功，请等待客服联系';
+                $msg = '已收到您的申请，请等待客服与您联系';
             }else{
                 $msg = 1;
                 $msg = '提交失败，请稍后再试';
