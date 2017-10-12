@@ -262,6 +262,9 @@ header{
 .introduce i{
   color: #00a2ff
 }
+.service-list {
+  padding: 0px 10px
+}
 .service-list li{
   padding:10px 10px ;
   border: 1px dashed #ddd;
