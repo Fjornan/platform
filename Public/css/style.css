@@ -234,9 +234,12 @@ header{
 }
 
 .abstract{
-  padding: 10px 10px 0px;
+  padding: 15px 10px 0px;
   margin: 0px 10px;
   border-bottom: 1px solid #00a2ff
+}
+.abstract h3{
+  font-size: 18px;
 }
 .abstract p{
   font-size: 12px;
@@ -261,6 +264,8 @@ header{
 }
 .service-list li{
   padding:10px 10px ;
+  border: 1px dashed #ddd;
+  margin: 10px 0px;
 }
 .service-list span{
   vertical-align: middle;
@@ -269,6 +274,12 @@ header{
   width: 25px;
   margin-right: 10px;
 }
+.service-list p{
+  font-size: 12px;
+  color: #888;
+  padding-left: 30px;
+  margin: 0px
+}
 .jhkj-contain{
   padding-bottom:49px; 
 }
@@ -276,11 +287,12 @@ header{
   color: #00a2ff
 }
 .pro-info{
-  padding: 10px 30px;
+  padding: 10px 30px 10px 35px;
   font-size: 12px;
   line-height: 1.8;
   border-top: solid 1px #ccc;
   margin-top: 10px;
+  color: #666
 }
 .pro-title{
   padding: 5px 10px;
@@ -298,9 +310,10 @@ header{
   margin-right: 10px;
 }
 .pro-price{
-  font-size: 16px;
+  font-size: 18px;
   color: #00a2ff;
   padding: 5px 20px;
+  font-weight: bolder;
 }
 .bottom-btn{
   width: 100%;
