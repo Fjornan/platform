@@ -82,14 +82,23 @@
               </select>
             </div>
             
-            <div class="am-form-group">
+            <div class="am-form-group" id="purpose_site">
               <label for="purpose_site">您意向开通的站点</label>
-              <select id="purpose_site">
+              <label class="am-checkbox">
+                <input type="checkbox" value="北美站">北美站
+              </label>
+              <label class="am-checkbox">
+                <input type="checkbox" value="欧洲站">欧洲站
+              </label>
+              <label class="am-checkbox">
+                <input type="checkbox" value="日本站">日本站
+              </label>
+              <!-- <select id="purpose_site">
                 <option value="-1">请选择</option>
                 <option value="北美站">北美站</option>
                 <option value="欧洲站">欧洲站</option>
                 <option value="日本站">日本站</option>
-              </select>
+              </select> -->
             </div>
 
             <div class="am-form-group">
@@ -97,7 +106,7 @@
               <input type="text" class="am-form-field am-input-sm" id="web_site" placeholder="请输入您的公司网址或网店地址">
             </div>
 
-            <div class="am-form-group">
+            <div class="am-form-group" id="interet">
               <label for="interet">您对哪项鲸航跨境服务感兴趣（方便我们为您定制服务）</label>
               <label class="am-checkbox">
                 <input type="checkbox" value="公司注册">公司注册
@@ -152,21 +161,31 @@ $('#submit').click(function(){
   d.com_property = $('#com_property').val();
   d.year_sell = $('#year_sell').val();
   d.has_shop = $('#has_shop').val();
-  d.purpose_site = $('#purpose_site').val();
+  // d.purpose_site = $('#purpose_site').val();
   d.web_site = $('#web_site').val();
 
   var str=""; 
-  $(":checkbox:checked").each(function(){ 
+  $("#interet :checkbox:checked").each(function(){ 
     if(str == ""){
       str += $(this).val();
     }else{
       str += ','+$(this).val()
     }
   }) 
-
   d.interet = str;
-  console.log(d);
+  str = '';
+  $("#purpose_site :checkbox:checked").each(function(){ 
+    if(str == ""){
+      str += $(this).val();
+    }else{
+      str += ','+$(this).val()
+    }
+  }) 
+  d.purpose_site = str;
+  str=''
 
+
+  console.log(d);
   if(d.company == '' || d.username == '' || d.phone == '' || d.product == '' || d.email == '' || d.province == ''){
     $('#alertMsg').text('请填写带 * 信息');
     $('#myAlert').modal('toggle');

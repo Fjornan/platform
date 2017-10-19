@@ -29,8 +29,11 @@
     <!-- <el-table-column prop="com_property" label="公司性质"></el-table-column>
     <el-table-column prop="year_sell" label="年销售额"></el-table-column> -->
     <el-table-column prop="create_time" label="提交时间"></el-table-column>
-    <el-table-column label="操作" width="100">
+    <el-table-column label="操作" width="180">
       <template scope="scope">
+        <router-link :to="{path: '/shop/amazonDetail/'+scope.row.id}">
+          <el-button size="small">详情</el-button>
+        </router-link>
         <el-button v-if="scope.row.status == 0" type="danger" size="small" @click="handleFinish(scope.$index, scope.row)">确认处理</el-button>
         <el-button v-else type="primary" size="small">已完成</el-button>
       </template>

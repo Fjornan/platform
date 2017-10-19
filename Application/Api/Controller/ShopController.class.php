@@ -3,7 +3,7 @@ namespace Api\Controller;
 
 class ShopController extends ComController {
 
-    //专利申请
+    //亚马逊申请
     public function getAmazonApply(){
         if(!isAdmin()){
             $error = 101;
@@ -30,7 +30,22 @@ class ShopController extends ComController {
         $result = return_json($error,$msg,$res);
         $this->ajaxReturn($result);
     }
-    //专利申请
+    public function getAmazonApplyDetail(){
+        if(!isAdmin()){
+            $error = 101;
+        }else{
+            $condition['id'] = I('post.id');
+            $db_patent = M('amazon_res');
+            // $db_user = M('user');
+            $getData = $db_patent->where($condition)->find();
+            
+            $res = $getData;
+            $error = 0;
+        }
+        $result = return_json($error,$msg,$res);
+        $this->ajaxReturn($result);
+    }
+    //完成亚马逊申请
     public function finishAmazonApply(){
         if(!isAdmin()){
             $error = 101;
