@@ -43,6 +43,7 @@ class UserController extends ComController {
         $phpexcel->getActiveSheet()->fromArray($data);
         $phpexcel->getActiveSheet()->setTitle('Sheet1');
         $phpexcel->setActiveSheetIndex(0);
+        ob_end_clean();
         header('Content-Type: application/vnd.ms-excel');
         header("Content-Disposition: attachment;filename=$filename");
         header('Cache-Control: max-age=0');
@@ -51,7 +52,16 @@ class UserController extends ComController {
         header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
         header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
         header ('Pragma: public'); // HTTP/1.0
-        $objwriter = PHPExcel_IOFactory::createWriter($phpexcel, 'Excel5');
+
+        header('Content-Type: application/vnd.ms-excel');
+        header("Content-Disposition: attachment;filename=$filename");
+        header('Cache-Control: max-age=0');
+        header('Cache-Control: max-age=1');
+        header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+        header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+        header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+        header ('Pragma: public'); // HTTP/1.0
+        $objwriter = \PHPExcel_IOFactory::createWriter($phpexcel, 'Excel5');
         $objwriter->save('php://output');
         exit;
     }
