@@ -4,11 +4,11 @@
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/shop/amazon' }">亚马逊全球开店</el-breadcrumb-item>
     </el-breadcrumb>
-    <!-- <div class="bread-btn">
-      <router-link :to="{path: '/user/add'}" >
-      <el-button icon="plus" type="primary" size="small">添加</el-button>
-      </router-link>
-    </div> -->
+    <div class="bread-btn">
+      <a :href="exportExcel">
+      <el-button icon="upload2" type="primary" size="small">导出列表</el-button>
+      </a>
+    </div>
   </div>
 
   <el-select class="m0020" style="width:200px" v-model="status" size="small" placeholder="请选择分类" @change="handleChangeGetStatus">
@@ -52,12 +52,18 @@ export default {
         1: '已处理'
       },
       status: '0',
-      tableData: []
-
-
+      tableData: [],
+      exportExcel: ''
     }
   },
-  computed: {},
+  computed: {
+
+  },
+  watch: {
+    status() {
+      this.changeExportUrl()
+    }
+  },
   mounted() {
     this.getData()
   },
@@ -70,6 +76,10 @@ export default {
        }).success((res) => {
           this.tableData = res.data;
       })
+       this.exportExcel = `${SITE_URL}/shop/exportAmazonRes?status=${this.status}`
+    },
+    changeExportUrl(){
+      this.exportExcel = `${SITE_URL}shop/exportAmazonRes?status=${this.status}`
     },
     handleChangeGetStatus(res){
       this.status = res;

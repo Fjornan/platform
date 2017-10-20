@@ -10,7 +10,7 @@
   <el-menu default-active="this.$route.path" class="el-menu-vertical-demo" :router="true">
     <el-menu-item index="/user"><i class="el-icon-star-on"></i>鲸航Vip</el-menu-item>
     <el-submenu index="1">
-      <template slot="title"><i class="el-icon-upload"></i>开店通道</template>
+      <template slot="title"><i class="el-icon-menu"></i>开店通道</template>
         <el-menu-item index="/shop/amazon">亚马逊</el-menu-item>
     </el-submenu>
     <el-submenu index="2">

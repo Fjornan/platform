@@ -4,11 +4,11 @@
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/user' }">用户列表</el-breadcrumb-item>
     </el-breadcrumb>
-    <!-- <div class="bread-btn">
-      <router-link :to="{path: '/user/add'}" >
-      <el-button icon="plus" type="primary" size="small">添加</el-button>
-      </router-link>
-    </div> -->
+    <div class="bread-btn">
+      <a :href="exportExcel">
+      <el-button icon="upload2" type="primary" size="small">导出列表</el-button>
+      </a>
+    </div>
   </div>
 
   <el-table :data="user" stripe style="width: 100%;text-align:left">
@@ -35,7 +35,9 @@
 </div>
   
 </template>
+
 <script>
+
 export default {
   data() {
     return {
@@ -43,16 +45,21 @@ export default {
         0: '不显示',
         1: '显示'
       },
-      user: []
-
+      user: [],
+      exportExcel: ''
     }
   },
   computed: {},
   mounted() {
     this.getUser()
+    this.init()
   },
   attached() {},
   methods: {
+    init() {
+      // console.log(SITE_URL)
+      // this.exportExcel = `${SITE_URL}/user/exportExcel`
+    },
     getUser() {
       /* eslint-disable */
        this.$rqt.post('/user/getUser', {
@@ -60,6 +67,7 @@ export default {
        }).success((res) => {
           this.user = res.data;
       })
+       this.exportExcel = `${SITE_URL}/user/export_user`
     },
     handleDelete(index,row){
       var that = this;
