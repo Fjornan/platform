@@ -6,9 +6,9 @@ use Think\Controller;
 
 class ComController extends Controller{
 	public function _initialize(){
-		session('id',1);
-		session('member',0);
-		session('openid','opkc-wsEIvhQ-WRildlGbaDSODn0');
+		// session('id',1);
+		// session('member',1);
+		// session('openid','opkc-wsEIvhQ-WRildlGbaDSODn0');
 		$state =  'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 		if(session('id') == null || session('openid') == null){
 			$this->getCode($state);
