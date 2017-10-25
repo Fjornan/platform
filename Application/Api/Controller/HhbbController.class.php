@@ -127,7 +127,7 @@ class HhbbController extends ComController {
             $getData = $db_order->where($condition)->order('id desc')->limit($offset,$page)->select();
             for($i=0;$i<count($getData);$i++){
                 if($getData[$i]['type'] == 2){
-                    $getData[$i]['phone'] = $getData[$i]['note'];
+                    $getData[$i]['phone'] = $getData[$i]['contact'];
                 }else{
                     $userinfo = getUserInfo($getData[$i]['user_id']);
                     $getData[$i]['name'] = $userinfo['name'];

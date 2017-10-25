@@ -52,6 +52,16 @@
         </ol>
       </div>
       <div class="cut-line-bold"></div>
+      <?php if(session('member') == 0){?>
+        <form class="am-form pd2222">
+          <fieldset>
+            <div class="am-form-group">
+              <label for="doc-ipt-email-1">联系方式 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="contact" placeholder="请填写手机号码">
+            </div>
+          </fieldset>
+        </form>
+      <?php }?>
       <div class="tc">
         <img style="width: 60%;" src="__PUBLIC__/image/logo.png">
       </div>
@@ -81,13 +91,21 @@
   var d = {};
   d.product_sign = product_sign;
   d.price = price;
+  d.contact = $('#contact').val();
   d.service_sign = 'ppjz';
   if(d.product_sign == ''){
     $('#alertMsg').text('请至少选择一个产品');
     $('#myAlert').modal('toggle');
     return false;
   }
-
+  if("<?=session('member')?>" == 0){
+    d.type = 2;
+    if(d.contact == ''){
+      $('#alertMsg').text('请填写您的联系方式');
+      $('#myAlert').modal('toggle');
+      return false;
+    }
+  }
   $.ajax({  
     url: Api+'/order/confirm',  
     data:d,
@@ -95,7 +113,13 @@
     success:function(data) {  
       if(data.error == 0 ){  
         console.log(data);
-        window.location.href = Api+"/Wxpay/index?id="+data.data;
+        if(d.price <= 0){
+          $('#alertMsg').text(data.msg);
+          $('#myAlert').modal('toggle');
+        }else{
+          window.location.href = Api+"/Wxpay/index?id="+data.data;
+        }
+        
       }else if(data.error == 202){
         $('#vipMsg').text(data.msg);
         $('#vipAlert').modal('toggle');

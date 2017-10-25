@@ -62,6 +62,16 @@
         </ol>
       </div>
       <div class="cut-line-bold"></div>
+      <?php if(session('member') == 0){?>
+        <form class="am-form pd2222">
+          <fieldset>
+            <div class="am-form-group">
+              <label for="doc-ipt-email-1">联系方式 *</label>
+              <input type="text" class="am-form-field am-input-sm" id="contact" placeholder="请填写手机号码及邮箱">
+            </div>
+          </fieldset>
+        </form>
+      <?php }?>
       <div class="tc">
         <img style="width: 60%;" src="__PUBLIC__/image/logo.png">
       </div>
@@ -89,14 +99,23 @@ $('#plus').click(function(){
     amount++;
   $('#amount').text(amount);
 })
+var d = {}; 
 
 $('#submit').click(function(){
-  var d = {}; 
+  
   d.product_sign = 'upc_1';
   d.price = amount*price;
   d.service_sign = 'upc';
   d.amount = amount+'个';
-  console.log(d);
+  d.contact = $('#contact').val();
+  if("<?=session('member')?>" == 0){
+    d.type = 2;
+    if(d.contact == ''){
+      $('#alertMsg').text('请填写您的联系方式');
+      $('#myAlert').modal('toggle');
+      return false;
+    }
+  }
   $.ajax({  
     url: Api+'/order/confirm',  
     data:d,

@@ -35,8 +35,6 @@ class OrderController extends ComController {
     public function confirm(){
     	if(session('id') == null){
             $error = 201;
-        }else if(session('member') == 0 && I('post.service_sign') != 'zscq'){
-            $error = 202;
         }else{
             $db_order = M('order');
             $data['user_id'] = session('id');
@@ -45,8 +43,12 @@ class OrderController extends ComController {
             $data['service_sign'] = I('post.service_sign');
             $data['price'] = I('post.price');
             $data['note'] = I('post.note');
+            $data['contact'] = I('post.contact');
             $data['amount'] = I('post.amount');
             $data['type'] = I('post.type');
+            if($data['price'] <= 0){
+                $data['status'] = 1;
+            }
             if($data['type'] == ''){
                 $data['type'] = 1;
             }

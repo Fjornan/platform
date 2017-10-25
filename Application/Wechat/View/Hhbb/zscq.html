@@ -97,7 +97,7 @@
           <fieldset>
             <div class="am-form-group">
               <label for="doc-ipt-email-1">联系方式 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="phone" placeholder="请填写手机号码">
+              <input type="text" class="am-form-field am-input-sm" id="contact" placeholder="请填写手机号码">
             </div>
           </fieldset>
         </form>
@@ -164,7 +164,7 @@
   var d = {};
   d.product_sign = product_sign;
   d.price = price;
-  d.note = $('#phone').val();
+  d.contact = $('#contact').val();
   d.service_sign = 'zscq';
 
   if(d.product_sign == ''){
@@ -174,7 +174,7 @@
   }
   if("<?=session('member')?>" == 0){
     d.type = 2;
-    if(d.note == ''){
+    if(d.contact == ''){
       $('#alertMsg').text('请填写您的联系方式');
       $('#myAlert').modal('toggle');
       return false;
