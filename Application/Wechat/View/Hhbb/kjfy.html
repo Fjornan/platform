@@ -137,7 +137,12 @@
     success:function(data) {  
       if(data.error == 0 ){  
         console.log(data);
-        window.location.href = Api+"/Wxpay/index?id="+data.data;
+        if(d.price <= 0){
+          $('#alertMsg').text(data.msg);
+          $('#myAlert').modal('toggle');
+        }else{
+          window.location.href = Api+"/Wxpay/index?id="+data.data;
+        }
       }else if(data.error == 202){
         $('#vipMsg').text(data.msg);
         $('#vipAlert').modal('toggle');
