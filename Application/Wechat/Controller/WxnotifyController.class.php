@@ -23,7 +23,7 @@ class WxnotifyController extends Controller{
 	        	$db_user = M('user');
 	        	if($db_user->where('id='.$id)->getField('is_member') == 1){
 	        		$update['id'] = $id;
-	        		$update['member_money'] = $result['total_fee'];
+	        		$update['member_money'] = ((float)$result['total_fee'])/100;
 	        		$update_res = $db_user->save($update);
 	        	}else{
 	        		//向card表中插入数据
