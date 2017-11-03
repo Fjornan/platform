@@ -37,7 +37,7 @@ class WxnotifyController extends Controller{
 		            
 		            $update['id'] = $id;
 		            $update['is_member'] = 1;
-		            $update['member_money'] = (float)$result['total_fee']/100;
+		            $update['member_money'] = ((float)$result['total_fee']/100);
 		            $update['member_num'] = $card_id;
 		            $update_res = $db_user->save($update);
 	        	}
