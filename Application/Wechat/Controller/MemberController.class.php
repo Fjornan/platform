@@ -7,18 +7,21 @@ class MemberController extends ComController {
         $id = session('id');
         $user_info = M('user')->where('id='.$id)->find();
         session('member',$user_info['is_member']);
-    	if(session('member') == 1){
-    		$this->redirect('member/info');
-    	}else{
-    		$this->display();
-    	}
-        
-
+        if(session('member') == 1){ 
+            $this->redirect('member/info'); 
+          }else{ 
+            $this->redirect('member/join');
+          } 
+    }
+    public function join(){
+        $this->display();
     }
     //申领鲸卡
     public function register(){
-    	$order['user_id'] =  session('id');
-        $order['price'] = 298;
+        $id = session('id');
+        $user = M('user')->where('id='.$id)->find();
+    	$order['user_id'] = session('id');
+        $order['price'] = (float)I('get.price');
         $order['service_sign'] = 'vip';
         Vendor('Weixinpay.Weixinpay');
         $wxpay=new \Weixinpay;
@@ -29,6 +32,7 @@ class MemberController extends ComController {
             'data'=>json_encode($data)
         );
         $this->assign($assign);
+        $this->assign('user',$user);
     	$this->display();
     }
     public function info(){
@@ -40,9 +44,6 @@ class MemberController extends ComController {
     public function pay(){
     	if(session('id') == null){
             $error = 201;
-        }else if(session('member') != 0){
-            $error = 1;
-            $msg = '已经是会员，无需再开通鲸航Vip卡';
         }else{
             $db_user = M('user');
             // $db_card = M('card');

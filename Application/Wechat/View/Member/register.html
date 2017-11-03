@@ -7,7 +7,7 @@
 <body>
   <header data-am-widget="header" class="am-header am-header-default">
         <div class="am-header-left am-header-nav">
-            <a href="{:U('member/index')}" class="">
+            <a href="{:U('member/join')}" class="">
             <i class="fa fa-chevron-left fa-lg"></i>
             </a>
         </div>
@@ -27,12 +27,12 @@
           <fieldset>
             <div class="am-form-group">
               <label for="doc-ipt-email-1">姓名 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="name" placeholder="请输入姓名">
+              <input type="text" class="am-form-field am-input-sm" id="name" placeholder="请输入姓名" value="{$user['name']}">
             </div>
 
             <div class="am-form-group">
               <label for="doc-ipt-email-1">手机号码 *</label>
-              <input type="text" class="am-form-field am-input-sm" id="phone" placeholder="请输入手机号码">
+              <input type="text" class="am-form-field am-input-sm" id="phone" placeholder="请输入手机号码" value="{$user['phone']}">
             </div>
 
             <!-- <div class="am-form-group">

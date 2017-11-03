@@ -60,9 +60,15 @@
       </div>
       <div class="bottom-btn">
         <a href="tel:15267038084" ><i class="fa fa-phone-square fa-lg"></i> 详情咨询</a>
+        
         <a href="{:U('member/register')}"><i class="fa fa-paper-plane fa-lg"></i>
+        <?php if(session('member') == 0){?>
           加入鲸航
+        <?php }else if(session('member') == 1){?>
+          升级服务
+        <?php }?>
         </a>
+        
       </div>
       <!-- <a href="{:U('member/register')}" class="bottom-btn">
         开通鲸卡

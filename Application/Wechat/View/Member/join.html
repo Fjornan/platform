@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>鲸航跨境-专注跨境服务</title>
+  <include file="Public/header"/>
+</head>
+<body>
+  <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <a href="#left-link" class="">
+            <!-- <i class="fa fa-angle-left fa-lg"></i> -->
+            </a>
+        </div>
+        <h1 class="am-header-title">
+         鲸航跨境 - 专注跨境服务
+        </h1>
+        <div class="am-header-right am-header-nav">
+            <a href="#right-link" class=""></a>
+        </div>
+    </header>
+    <section class="jhkj-contain">
+      <div class="banner tc">
+        <img style="width: 100%;" src="__PUBLIC__/image/banner/banner-mine.jpeg">
+      </div>
+      <div class="abstract">
+        <h3>加入鲸航</h3>
+        <p>鲸航跨境-助你轻松跨境货销全球</p>
+      </div>
+      <div style="padding: 10px;" class="introduce am-g">
+        <div class="introduce-list"><i class="fa fa-circle"></i> 货销全球</div>
+        <div class="introduce-list"><i class="fa fa-circle"></i> 跨境如此简单</div>
+        <div class="introduce-list"><i class="fa fa-circle"></i> 专业的力量</div>
+      </div>
+      <div class="cut-line-bold"></div>
+      <div class="pd2222">
+        <div class="pro-title">
+          <h3>
+            <img class="pro-bar" src="__PUBLIC__/image/bar.png">Amazon注册指导
+            <label class="am-checkbox">
+              <input type="checkbox" data-price="298" data-am-ucheck>
+            </label>
+          </h3>
+        </div>
+        <div class="pro-price">
+          ￥298
+        </div>
+        <ol class="pro-info">
+          <li>亚马逊“全球开店”招商经理专属注册通道</li>
+          <li style="color: red">亚马逊“全球开店”注册过程指导+注册问题解答</li>
+          <li>福利：Lazada、Shopee等其它平台开店指导（陆续更新中）</li>
+        </ol>
+      </div>
+      <div class="cut-line-bold"></div>
+      <div class="pd2222">
+        <div class="pro-title">
+          <h3>
+            <img class="pro-bar" src="__PUBLIC__/image/bar.png">Amazon新手实操“一对一”指导
+            <label class="am-checkbox">
+              <input type="checkbox" data-price="0.01" data-am-ucheck>
+            </label>
+          </h3>
+        </div>
+        <div class="pro-price">
+          ￥1298
+        </div>
+        <ol class="pro-info">
+          <li>亚马逊招商经理注册通道+注册指导+注册问题解答</li>
+          <li>亚马逊基础实操教学教程（永久免费更新）</li>
+          <li style="color: red">对接鲸航运营老师：12个月“一对一”线上指导+问题解答</li>
+          <li>福利：Lazada、Shopee等其它平台开店指导（陆续更新中）</li>
+        </ol>
+      </div>
+      <div class="cut-line-bold"></div>
+      <div class="pd2222">
+        <div class="pro-title">
+          <h3>
+            <img class="pro-bar" src="__PUBLIC__/image/bar.png">鲸航跨境运营支持
+            <label class="am-checkbox">
+              <input type="checkbox" data-price="0.02" data-am-ucheck>
+            </label>
+          </h3>
+        </div>
+        <div class="pro-price">
+          ￥3288
+        </div>
+        <ol class="pro-info">
+          <li>亚马逊招商经理注册通道+注册指导+实操教程</li>
+          <li>对接鲸航运营老师：12个月“一对一”线上指导+问题解答</li>
+          <li style="color: red">鲸航跨境自营专用优质跨境资源共享</li>
+          <li>免费参加鲸航跨境高端卖家圈活动</li>
+          <li>福利：Lazada、Shopee等其它平台开店指导（陆续更新中）</li>
+        </ol>
+      </div>
+      <div class="cut-line-bold"></div>
+      <div class="tc">
+        <img style="width: 60%;" src="__PUBLIC__/image/logo.png">
+      </div>
+      <div class="bottom-btn">
+        <a href="tel:15267038084" ><i class="fa fa-phone-square fa-lg"></i> 详情咨询</a>
+        
+        <a id="submit"><i class="fa fa-paper-plane fa-lg"></i>
+        <?php if(session('member') == 0){?>
+          加入鲸航
+        <?php }else if(session('member') == 1){?>
+          升级服务
+        <?php }?>
+        </a>
+        
+      </div>
+      <!-- <a href="{:U('member/register')}" class="bottom-btn">
+        开通鲸卡
+      </a> -->
+    </section>
+<include file="Public/alert"/>
+</body>
+</html>
+
+<script type="text/javascript">
+  $('#submit').click(function(){
+  var price = 0;
+  if($(":checkbox:checked").length != 1){
+    $('#alertMsg').text('请选择其中的一项服务');
+    $('#myAlert').modal('toggle');
+  }else{
+    price = $(":checkbox:checked").eq(0).data('price');
+    window.location.href = Api+"/member/register?price="+price;
+  }
+
+  
+ 
+
+})
+</script>
