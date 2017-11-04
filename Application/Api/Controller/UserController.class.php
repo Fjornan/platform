@@ -8,8 +8,16 @@ class UserController extends ComController {
         }else{
             $db_user = M('user');
             $condition['is_member'] = 1; 
+            $search = '%'.I('post.search').'%';
+
+            $where['name']  = array('like', $search);
+            $where['phone']  = array('like',$search);
+            $where['_logic'] = 'or';
+
+            $condition['_complex'] = $where;
+
             // $db_user->where($condition)->select();
-            $res = $db_user->where($condition)->select();
+            $res = $db_user->where($condition)->order('id desc')->select();
             $error = 0;
         }
         $result = return_json($error,$msg,$res);

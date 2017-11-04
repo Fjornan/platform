@@ -11,6 +11,12 @@
     </div>
   </div>
 
+  <div style="margin: 15px 0px;width:300px">
+    <el-input placeholder="请输入用户姓名或手机号" v-model="search">
+      <el-button slot="append" icon="search" @click="getUser"></el-button>
+    </el-input>
+  </div>
+
   <el-table :data="user" stripe style="width: 100%;text-align:left">
     <el-table-column prop="name" label="姓名"></el-table-column>
     <el-table-column prop="member_num" label="卡号"></el-table-column>
@@ -47,7 +53,8 @@ export default {
         1: '显示'
       },
       user: [],
-      exportExcel: ''
+      exportExcel: '',
+      search: ''
     }
   },
   computed: {},
@@ -64,7 +71,7 @@ export default {
     getUser() {
       /* eslint-disable */
        this.$rqt.post('/user/getUser', {
-        
+        search:this.search
        }).success((res) => {
           this.user = res.data;
       })
