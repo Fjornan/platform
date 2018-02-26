@@ -13,6 +13,8 @@ class HhbbController extends ComController {
             }else{
                 $condition['service_sign'] = $sign;
             }
+            $condition['use'] = '0';
+            $condition['_logic'] = 'AND';
             // $db_user->where($condition)->select();
             $res = $db_user->where($condition)->select();
             $error = 0;
