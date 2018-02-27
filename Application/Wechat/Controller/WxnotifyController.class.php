@@ -19,11 +19,14 @@ class WxnotifyController extends Controller{
 	        // 验证成功 修改数据库的订单状态等 $result['out_trade_no']为订单id
 	        if(substr($result['out_trade_no'],0,3) == 'VIP'){
 	        	$id = substr($result['out_trade_no'],17);
-
+	        	$money = ((float)$result['total_fee'])/100;
 	        	$db_user = M('user');
 	        	if($db_user->where('id='.$id)->getField('is_member') == 1){
 	        		$update['id'] = $id;
-	        		$update['member_money'] = ((float)$result['total_fee'])/100;
+	        		$update['member_money'] = $money;
+	        		$update['update_time'] = date("Y-m-d H:i:s");
+	        		$old_pro = $db_user->where('id='.$id)->getField('member_product');
+	        		$update['member_product'] = $old_pro.','.round($money,2);
 	        		$update_res = $db_user->save($update);
 	        	}else{
 	        		//向card表中插入数据
@@ -39,6 +42,8 @@ class WxnotifyController extends Controller{
 		            $update['is_member'] = 1;
 		            $update['member_money'] = ((float)$result['total_fee'])/100;
 		            $update['member_num'] = $card_id;
+		            $update['update_time'] = date("Y-m-d H:i:s");
+		            $update['member_product'] = round($money,2);
 		            $update_res = $db_user->save($update);
 	        	}
 	            
