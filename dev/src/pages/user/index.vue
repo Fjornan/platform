@@ -20,7 +20,8 @@
   <el-table :data="user" stripe style="width: 100%;text-align:left">
     <el-table-column prop="name" label="姓名"></el-table-column>
     <el-table-column prop="member_num" label="卡号"></el-table-column>
-    <el-table-column prop="member_money" label="加入鲸航"></el-table-column>
+    <!-- <el-table-column prop="member_money" label="加入鲸航"></el-table-column> -->
+    <el-table-column prop="member_product" label="所购服务"></el-table-column>
     <el-table-column prop="phone" label="手机号"></el-table-column>
     <el-table-column prop="email" label="邮箱"></el-table-column>
     <el-table-column prop="company" label="公司"></el-table-column>
