@@ -10,12 +10,13 @@
       </a>
     </div>
   </div>
-
-  <div style="margin: 15px 0px;width:300px">
+  <span><el-button size="medium">会员人数：{{total_member}} 人</el-button></span>
+  <span style="margin-bottom: 15px;width:300px;display:inline-block ">
     <el-input placeholder="请输入用户姓名或手机号" v-model="search">
       <el-button slot="append" icon="search" @click="getUser"></el-button>
     </el-input>
-  </div>
+  </span>
+
 
   <el-table :data="user" stripe style="width: 100%;text-align:left">
     <el-table-column prop="name" label="姓名"></el-table-column>
@@ -26,7 +27,7 @@
     <el-table-column prop="email" label="邮箱"></el-table-column>
     <el-table-column prop="company" label="公司"></el-table-column>
     <el-table-column prop="product" label="主营产品"></el-table-column>
-    <el-table-column prop="create_time" label="注册时间"></el-table-column>
+    <el-table-column prop="update_time" label="购买时间"></el-table-column>
 <!--     <el-table-column prop="display" label="" width="100">
       <template scope="scope">
         <span>{{ displayType[scope.row.display] }}</span>
@@ -55,7 +56,8 @@ export default {
       },
       user: [],
       exportExcel: '',
-      search: ''
+      search: '',
+      total_member: 0
     }
   },
   computed: {},
@@ -75,6 +77,7 @@ export default {
         search:this.search
        }).success((res) => {
           this.user = res.data;
+          this.total_member = res.data.length;
       })
        this.exportExcel = `${SITE_URL}/user/export_user`
     },

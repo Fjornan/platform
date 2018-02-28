@@ -17,7 +17,7 @@ class UserController extends ComController {
             $condition['_complex'] = $where;
 
             // $db_user->where($condition)->select();
-            $res = $db_user->where($condition)->order('id desc')->select();
+            $res = $db_user->where($condition)->order('update_time desc,create_time desc')->select();
             $error = 0;
         }
         $result = return_json($error,$msg,$res);
@@ -33,6 +33,16 @@ class UserController extends ComController {
         create_xls($data,'vip.xls');
     }
 
+    public function move_date(){
+        $db_user = M('user');
+        $user = $db_user->select();
+        for ($i=0; $i < count($user); $i++) { 
+            $c_date = $user[$i]['create_time'];
+            $db_user->where('id='.$user[$i]['id'])->setField('update_time',$c_date);
+        }
+        
+
+    }
     
 
 }

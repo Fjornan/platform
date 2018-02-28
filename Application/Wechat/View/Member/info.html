@@ -23,14 +23,49 @@
         <img style="width: 300px;padding-top: 10px;" src="__PUBLIC__/image/card.png">
         <span style="position: absolute; bottom: 130px;right: 80px;font-size: 16px;font-weight: bold;">No.{$user['member_num']}</span>
       </div>
-      <div style="padding: 10px 20px 20px;color: #56c1ff;text-align: center;">已有服务：
-      <?php if((int)$user['member_money'] == 1298){?>
+      <div style="padding: 10px 20px 20px;color: #56c1ff;text-align: center;line-height: 1.5">已有服务：
+      <!-- <?php if((int)$user['member_money'] == 1298){?>
       Amazon新手实操“一对一”指导
       <?php }else if((int)$user['member_money'] == 3288){?>
       鲸航跨境运营支持
       <?php }else {?>
       Amazon注册指导
-      <?php }?>
+      <?php }?> -->
+      <?php 
+        $arr = explode("," ,$user['member_product']);
+        $product = '';
+        for($i=0;$i<count($arr);$i++){
+          $str = '';
+          switch($arr[$i]){
+            case 298.00:
+              $str = 'Amazon注册指导';
+              break;
+            case 1298.00:
+              $str = 'Amazon新手实操“一对一”指导';
+              break;
+            case 3288.00:
+              $str = '鲸航跨境运营支持';
+              break;
+            case 198.00:
+              $str = 'Wish/Lazada/Shopee';
+              break;
+            case 0.01:
+              $str = '跨境电商-工厂联营合作';
+              break;
+            default:
+              $str = '';
+          }
+          if($str != ''){
+            if($product == ''){
+              $product = $product.$str;
+            }else{
+              $product = $product."；".$str;
+            }
+            
+          }
+        }
+        echo $product;
+      ?>
       </div>
       <div class="cut-line-bold"></div>
       <div class="pd2222">

@@ -50,7 +50,7 @@ export default {
         1: '显示'
       },
       productType: {
-        gszc: '公司注册及记账报税',
+        gszc: '跨境电商产品评测',
         zscq: '海外商标及专利申请',
         upc: 'UPC',
         vat: 'VAT',
