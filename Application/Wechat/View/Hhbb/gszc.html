@@ -54,14 +54,14 @@
         <div class="pro-title">
           <h3>
             <img class="pro-bar" src="__PUBLIC__/image/bar.png">{$product[1]['name']}
-            
+            <label class="am-checkbox">
+              <input type="checkbox" data-price="{$product[1]['price']}" value="{$product[1]['sign']}" data-am-ucheck>
+            </label>
           </h3>
         </div>
         <div style="font-size: 15px;" class="pro-price">
           ￥{$product[1]['price']}元 {$product[1]['sub_name']}
-          <label class="am-checkbox">
-              <input type="checkbox" data-price="{$product[1]['price']}" value="{$product[1]['sign']}" data-am-ucheck>
-            </label>
+          
             <div class="clear"></div>
         </div>
         <!-- <div style="font-size: 15px;" class="pro-price">
