@@ -27,7 +27,7 @@
     <el-table-column prop="email" label="邮箱"></el-table-column>
     <el-table-column prop="company" label="公司"></el-table-column>
     <el-table-column prop="product" label="主营产品"></el-table-column>
-    <el-table-column prop="update_time" label="购买时间"></el-table-column>
+    <el-table-column prop="update_time" label="最新付费时间"></el-table-column>
 <!--     <el-table-column prop="display" label="" width="100">
       <template scope="scope">
         <span>{{ displayType[scope.row.display] }}</span>
