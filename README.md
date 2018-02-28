@@ -40,3 +40,7 @@
 编译项目
 > npm run build
 
+## 公众号二维码
+![](./Public/image/qrcode.jpg '鲸航跨境')
+
+
